@@ -3,6 +3,8 @@ from django.db import models
 
 class PageAbout(models.Model):
     about = models.TextField()
+    photo = models.FileField()
+    certificates = models.FileField()
 
     def __str__(self):
         name_object = 'About settings'
@@ -10,17 +12,6 @@ class PageAbout(models.Model):
 
     class Meta:
         verbose_name_plural = 'About settings'
-
-
-class PagePrice(models.Model):
-    text_price = models.TextField()
-
-    def __str__(self):
-        name_object = 'Price settings'
-        return name_object
-
-    class Meta:
-        verbose_name_plural = 'Price settings'
 
 
 class PrivacyPolicy(models.Model):
@@ -75,7 +66,8 @@ class Tag(models.Model):
 class Projects(models.Model):
     title = models.CharField(max_length=300, default='max title length is 300 characters')
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    description = models.TextField()
+    small_description = models.TextField()
+    full_description = models.TextField()
     head_photo = models.FileField()
     additional_photos = models.FileField()
 
