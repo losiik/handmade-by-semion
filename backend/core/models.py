@@ -3,8 +3,8 @@ from django.db import models
 
 class PageAbout(models.Model):
     about = models.TextField()
-    photo = models.FileField()
-    certificates = models.FileField()
+    photo = models.FileField(upload_to='files/photos/personal')
+    certificates = models.FileField(upload_to='files/documents/certificates')
 
     def __str__(self):
         name_object = 'About settings'
@@ -15,7 +15,7 @@ class PageAbout(models.Model):
 
 
 class PrivacyPolicy(models.Model):
-    content = models.FileField()
+    content = models.FileField(upload_to='files/documents/privacy_policy')
 
     def __str__(self):
         name_object = 'Privacy policy file'
@@ -56,8 +56,18 @@ class PageContacts(models.Model):
         verbose_name_plural = 'Contacts settings'
 
 
+class Skills(models.Model):
+    skill = models.CharField(max_length=255)
+    description = models.TextField(default=None)
+
+    def __str__(self):
+        return self.skill
+
+
 class Tag(models.Model):
+    skill = models.ForeignKey(Skills, on_delete=models.CASCADE, default=None)
     tag = models.CharField(max_length=255)
+    description = models.TextField(default=None)
 
     def __str__(self):
         return self.tag
