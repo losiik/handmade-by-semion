@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&family=Koulen&display=swap');
+
+body{
+    font-family: Inter;
+    margin: 0;
+    border:0;
+    background-color: #F6F6F6;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+a:hover {
+    text-decoration: underline;
+}
+header {
+    background-color: #ffffff;
+}
+.b_logo_text {
+    font-family: 'Koulen', cursive;
+    font-size: 38px;
+    color: #E02800;
+    margin-left: .5rem;
+    line-height: unset;
+}
+.b_header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+.b_logo__container {
+    display: flex;
+    align-items: center;
+}
+.m-active {
+    font-weight: bolder;
+}
+.b_menuLinks {
+    list-style-type: none;
+    display: flex;
+    padding-left: 0;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.b_menuLinks li {
+   margin-left: 2.5rem;
+}
+header img {
+    vertical-align: baseline;
+}
+section {
+    padding: 5rem 0;
+}
+.b_portfolio__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.b_portfolio__text {
+    font-weight: 900;
+    font-size: 60px;
+}
+.b_portfoliio__filter {
+    font-size: 15px;
+    position: relative;
+}
+.b_portfoliio__filter::after {
+    content: "▼";
+    position: absolute;
+    right: -20px;
+    top: 2px;
+    z-index: 1;
+    text-align: center;
+    width: 10%;
+    height: 100%;
+    pointer-events: none;
+}
+.b_cardList__grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+}
+.b_card_img,.b_card_img img {
+    object-fit:cover;
+    width: 100%;
+    aspect-ratio: 3/2;
+}
+.b_cardItem {
+    margin: 1rem ;
+    background-color: #fff;
+}
+.b_card__description {
+    padding: 1rem 1.5rem;
+}
+.b_card__title {
+    font-size: 24px;
+    font-weight: 900;
+}
+.b_card__text {
+    font-size: 12px;
+    font-weight: 300;
+}
+footer {
+    background-color: #1D1D1D;
+    color: #ffffff;
+}
+footer a {
+    color: #ffffff;
+}
+.b_footer__container {
+    display: flex;
+    justify-content: space-around;
+    padding: 5rem 0;
+}
