@@ -2,7 +2,7 @@ from django.forms import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import PageAbout, PageContacts, SendEmailSettings, Skills, Tag
+from .models import PageAbout, PageContacts, SendEmailSettings, Skills, Tag, CertificatesImage
 from .send_mail import SendMail
 from .serializers import PageAboutSerializer, PageContactsSerializer, SendEmailSettingsSerializer, \
     EmailMessageSerializer, SkillsSerializer, TagSerializer
@@ -14,9 +14,15 @@ class PageAboutView(APIView):
 
     @csrf_exempt
     def get(self, request):
+        certificates = []
         main_page = PageAbout.objects.all()
         serializer = PageAboutSerializer(main_page, many=True)
-        return Response({"about": serializer.data})
+        certificates_data = CertificatesImage.objects.all()
+
+        for certificate_data in certificates_data:
+            certificates.append(certificate_data.certificates.path)
+
+        return Response({"about": serializer.data, "certificates": certificates})
 
 
 class PageContactsView(APIView):
@@ -65,7 +71,7 @@ class SkillsView(APIView):
         return Response({"skills": serializer.data})
 
 
-class GetAllTags(APIView):
+class GetAllTagsView(APIView):
     @csrf_exempt
     def get(self, request):
         response = {}
@@ -91,3 +97,25 @@ class GetAllTags(APIView):
 class TagView(APIView):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+
+
+class GetSkillFullInfo(APIView):
+    @csrf_exempt
+    def get(self, request):
+        skill = request.query_params.get('skill')
+        skill = Skills.objects.filter(skill=skill)
+        skills_serializer = SkillsSerializer(skill, many=True)
+        skill_data = skills_serializer.data
+
+        tags = Tag.objects.filter(skill=skill_data[0]['id'])
+        tags_serializer = TagSerializer(tags, many=True)
+
+        response = {
+            'skill': skill_data[0]['skill'],
+            'description': skill_data[0]['description'],
+            'tags': tags_serializer.data,
+        }
+
+        return Response({'skil': response})
+
+

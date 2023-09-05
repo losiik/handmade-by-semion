@@ -8,5 +8,6 @@ urlpatterns = [
     path('send_email_setings/', views.SendEmailSettingsView.as_view()),
     path('send_email/', views.EmailMessageView.as_view()),
     path('all_skills/', views.SkillsView.as_view()),
-    path('all_tags/', views.GetAllTags.as_view())
+    path('all_tags/', views.GetAllTagsView.as_view()),
+    path('skill_full_info/', views.GetSkillFullInfo.as_view())
 ]

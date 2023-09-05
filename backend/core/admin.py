@@ -1,12 +1,23 @@
 from django.contrib import admin
 
-from .models import PageAbout, PageContacts, SendEmailSettings, EmailMessage, Skills, Tag
+from .models import PageAbout, PageContacts, SendEmailSettings, EmailMessage, Skills, Tag, CertificatesImage
+
+
+class CertificatesImageAdmin(admin.StackedInline):
+    model = CertificatesImage
 
 
 @admin.register(PageAbout)
 class PageAboutAdmin(admin.ModelAdmin):
-    pass
+    inlines = [CertificatesImageAdmin]
 
+    class Meta:
+        model = PageAbout
+
+
+@admin.register(CertificatesImage)
+class CertificatesImage(admin.ModelAdmin):
+    pass
 
 @admin.register(PageContacts)
 class PageContactsAdmin(admin.ModelAdmin):

@@ -3,8 +3,7 @@ from django.db import models
 
 class PageAbout(models.Model):
     about = models.TextField()
-    photo = models.FileField(upload_to='files/photos/personal')
-    certificates = models.FileField(upload_to='files/documents/certificates')
+    photo = models.FileField()
 
     def __str__(self):
         name_object = 'About settings'
@@ -12,6 +11,11 @@ class PageAbout(models.Model):
 
     class Meta:
         verbose_name_plural = 'About settings'
+
+
+class CertificatesImage(models.Model):
+    about = models.ForeignKey(PageAbout, default=None, on_delete=models.CASCADE)
+    certificates = models.FileField(upload_to='certificates/')
 
 
 class PrivacyPolicy(models.Model):
