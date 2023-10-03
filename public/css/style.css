@@ -1,0 +1,477 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700;900&family=Koulen&display=swap');
+
+body{
+    font-family: Inter;
+    margin: 0;
+    border:0;
+    background-color: #F6F6F6;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+a:hover {
+    text-decoration: underline;
+    color: inherit;
+}
+header {
+    background-color: #ffffff;
+}
+.b_logo_text {
+    font-family: 'Koulen', cursive;
+    font-size: 38px;
+    color: #E02800;
+    margin-left: .5rem;
+    line-height: unset;
+}
+.b_header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+.b_logo__container {
+    display: flex;
+    align-items: center;
+}
+.m-active {
+    font-weight: bolder;
+}
+.b_menuLinks {
+    list-style-type: none;
+    display: flex;
+    padding-left: 0;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.b_menuLinks li {
+   margin-left: 2.5rem;
+}
+header img {
+    vertical-align: baseline;
+}
+section {
+    padding: 5rem 0;
+}
+.b_portfolio__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.b_portfolio__text {
+    font-weight: 900;
+    font-size: 60px;
+}
+.b_portfoliio__filter {
+    margin-right: 20px;
+    font-size: 15px;
+    position: relative;
+}
+.b_portfoliio__filter::after {
+    content: "▼";
+    position: absolute;
+    right: -20px;
+    top: 2px;
+    z-index: 1;
+    text-align: center;
+    width: 10%;
+    height: 100%;
+    pointer-events: none;
+}
+.b_portfoliio__filter::before {
+    content: '';
+    position: absolute;
+    z-index: 20;
+    width: 140%;
+    height: 120%;
+    cursor: pointer;
+}
+.b_filter__list {
+    opacity: -1;
+    transition: all .5s;
+    padding: 2rem;
+    position: absolute;
+    right: -50%;
+    width: max-content;
+    max-width: 300%;
+    z-index: -10;
+    background-color: #F6F6F6;
+   filter: drop-shadow(0px 4px 21px rgba(0, 0, 0, 0.15));
+  }
+.b_portfoliio__filter:hover .b_filter__list {
+    opacity: 1;
+    z-index: 100;
+    padding: 2rem;
+    position: absolute;
+    right: -50%;
+    width: max-content;
+    max-width: 300%;
+    background-color: #F6F6F6;
+   filter: drop-shadow(0px 4px 21px rgba(0, 0, 0, 0.15));
+}
+
+.b_filter__list ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.b_cardList__grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+}
+.b_card_img,.b_card_img img {
+    object-fit:cover;
+    width: 100%;
+    aspect-ratio: 3/2;
+    position: relative;
+   
+}
+.b_card_img span {
+    top: 47%;
+    left: 37%;
+    z-index: -50;
+
+}
+.b_card_img:hover span {
+    top: 48%;
+    left: 35%;
+    z-index: 50;
+    transition: all .4s;
+}
+.b_card_img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.1s;
+  }
+.b_card_img:hover::after {
+    content: '';
+    backdrop-filter: blur(10px);
+}
+.b_cardItem {
+    background-color: #ffffff;
+    margin: 1rem 0;
+}
+.b_cardItem:nth-child(3n-1) {
+    margin: 1rem 0.5rem;
+}
+.b_cardItem:nth-child(3n+1) {
+    margin: 1rem 1rem 1rem 0;
+}
+.b_cardItem:nth-child(3n) {
+    margin: 1rem 0 1rem 1rem;
+}
+.b_card__description {
+    padding: 1rem 1.5rem;
+}
+.b_card__title {
+    font-size: 24px;
+    font-weight: 900;
+}
+.b_card__text {
+    font-size: 12px;
+    font-weight: 300;
+}
+footer {
+    background-color: #1D1D1D;
+    color: #ffffff;
+}
+footer a {
+    color: #ffffff;
+}
+.b_footer__container {
+    display: flex;
+    justify-content: space-around;
+    padding: 5rem 0;
+}
+h1 {
+    font-size: 60px;
+    text-align: center;
+    font-weight: 900;
+    color: #363333;
+}
+.b_projectDetail__mainDesc {
+    padding: 2rem 15rem;
+    font-size: 18px;
+    color: #171717;
+}
+.b_otherPhotoGrid__title {
+    font-weight: 400;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.b_projectDetail__oddPhotoGrid, .b_projectDetail__evenPhotoGrid{
+display: grid;
+grid-gap: 20px;
+margin-bottom: 40px;
+}
+.b_projectDetail__evenPhotoGrid {
+grid-template-columns: repeat(1, 1.66fr 1.33fr);
+}
+.b_projectDetail__oddPhotoGrid {
+grid-template-columns: repeat(1, 1.33fr 1.66fr);
+}
+.b_projectDetail__100widthPhotoGrid {
+width: 100%;
+}
+.photo img{
+width: 100%;
+object-fit: cover;
+height: 400px;
+}
+.photo {
+height: 400px;
+}
+.b_personDesc__title {
+    font-weight: 600;
+    font-size: 60px;
+}
+.b_personDesc__text {
+    font-size: 18px;
+
+}
+.b_personDesc__bloquote {
+    font-style: italic;
+    font-size: 18px;
+    color:#797979;
+}
+.b_about__personDesc {
+    display: flex;
+
+}
+.b_personDesc_photo img{
+    width: 90%;
+    aspect-ratio: 1 / 1;
+}
+.b_about__title {
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+}
+.b_about__skillsGrid {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.b_skillsGrid__item {
+    flex: 1 300px
+}
+.b_skillsGrid__item {
+    font-size: 25px;
+    font-weight: 400;
+    margin: 1rem;
+}
+.b_about__skillsGrid {
+    padding: 74px 62px;
+    background-color: #ffffff;
+    margin: 2rem 0;
+}
+.b_about__certificatesGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.b_about__certificatesGrid>*{
+    flex: 0 1 1;
+    margin: .5rem;
+  
+}
+.b_about__certificatesGrid  img{
+    width: 100%;
+    aspect-ratio: 3 / 2;
+}
+.modal {
+    backdrop-filter: blur(20px);
+}
+.b_modal_body {
+    margin: 10rem auto;
+    background-color: #ffffff;
+    color: #171717;
+    position: relative;
+    padding: 3rem 10rem 5rem 10rem;
+}
+.modal .b_modal_body a{
+    color: #171717;
+}
+.modal .b_modal_title {
+    font-size: 60px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+.modal .b_modal_contactFrom {
+    display: flex;
+
+}
+.modal .b_modal_contactFrom>*{
+    width: 50%;
+    padding-right: 1rem;
+}
+.modal .b_contact_title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+.modal .form_control input, textarea{
+    background-color: #FAFAFA;
+    border: none;
+    max-width: 400px;
+    margin-bottom: 1rem;
+    width: 100%;
+    border-radius: .5rem;
+
+}
+.modal form {
+    display: flex;
+    flex-direction: column;
+}
+.modal .form_control {
+    position: relative;
+}
+.modal .form_control input {
+    height: 2rem;
+    
+}
+.modal textarea {
+    height: 6rem;
+    
+}
+.modal label {
+    position: absolute;
+    font-size: 14px;
+    top: 5%;
+    left: 2%;
+    transition:all .3s ;
+}
+.modal .b_modal_contactInfo ul{
+    list-style-type: none;
+    padding-left: 0;
+}
+.modal .b_modal_contactInfo ul li{
+    margin-bottom: 1rem;
+}
+.b_btn {
+    background-color: #E02800;
+    padding: .5rem 1.2rem;
+    color: #FAFAFA;
+    text-align: center;
+    font-size: 18px;
+    border: none;
+    max-width: 200px;
+
+}
+ input:focus~label, input:required:valid~label, textarea:optional:invalid~label, textarea:focus:valid~label, textarea:required:valid~label{
+    top: -1.1rem;
+    font-size: 10px;
+}
+.b_modal_body::after, .b_modal_closeX {
+    content: '\00d7';
+    position: absolute;
+    transform: scale(4);
+    top: -35px;
+    right: -30px;
+}
+.b_modal_closeX {
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    top: -30px;
+    right: -30px;
+    z-index: 100;
+}
+.block {
+    overflow: hidden;
+}
+.b_card_callToAction {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+.b_card_callToAction a{
+  color: #F6F6F6;
+}
+.b_portfoliio__desc {
+    margin: 2rem 0;
+}
+
+
+
+
+
+/* тест */
+
+/* Reset default margin and padding */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px; /* Adjust base font size for better readability on smaller screens */
+    }
+
+    .b_header__container {
+        flex-direction: column; /* Stack logo and menu vertically */
+        text-align: center; /* Center align text */
+    }
+
+    .b_logo_text {
+        margin-top: 10px; /* Add some space above the logo text */
+    }
+
+    .b_menu__container {
+        margin-top: 10px; /* Add space between logo and menu */
+    }
+
+    .b_menuLinks {
+        justify-content: center; /* Center align menu items */
+        margin: 10px 0; /* Add some space around menu items */
+    }
+
+    .b_menuLinks li {
+        margin: 0 10px; /* Add space between menu items */
+    }
+
+    .b_cardList__grid {
+        grid-template-columns: repeat(1, 1fr); /* Display one card per row on smartphones */
+        gap: 20px; /* Add some space between cards */
+    }
+
+    .b_cardItem {
+        margin: 0; /* Remove margin around cards */
+    }
+
+    .b_card__description {
+        padding: 1rem; /* Add padding to card descriptions */
+    }
+
+    .b_card__title {
+        font-size: 20px; /* Decrease font size for card titles */
+    }
+
+    .b_card__text {
+        font-size: 14px; /* Decrease font size for card text */
+    }
+
+    .b_card_callToAction {
+        justify-content: center; /* Center align "Заказать" button */
+    }
+
+    .b_btn {
+        max-width: none; /* Allow button to take full width */
+    }
+
+    .b_footer__container {
+        flex-direction: column; /* Stack footer content vertically */
+        align-items: center; /* Center align footer content */
+    }
+
+    .b_footer__contacts {
+        margin-top: 20px; /* Add space between email and phone */
+    }
+
+    .b_footer__email, .b_footer__phone {
+        margin: 10px 0; /* Add space around contact information */
+    }
+}
