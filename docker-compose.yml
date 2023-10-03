@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  backend:
+    build: backend/
+    volumes:
+      - static_value:/app/static/
+      - media_volume:/app/files/
+    restart: always
+
+volumes:
+  static_value:
+  media_volume:
