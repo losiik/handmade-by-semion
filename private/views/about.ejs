@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="description">
+    <meta property="og:title" content="ANCOR – движущая сила кадровой индустрии">
+    <meta property="og:description" content="Лидер в области рекрутмента, аутсорсинга HR и других бизнес функций, кадрового консалтинга. Лучшие вакансии рынка труда и советы по поиску работы">
+    <meta property="og:image" content="<%= protocol + "//" + host %>/img/og_image.jpg">
+    <meta property="og:url" content="<%= protocol + "//" + host %>">
+    <meta property="og:site_name" content='<%= protocol + "//" + host %>'>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Handmade by Semion</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="b_header__container">
+                <div class="b_logo__container">
+                    <div class="b_logo__img">
+                        <img src="img/hammer.png" alt="hammer">
+                    </div>
+                    <div class="b_logo_text">
+                        Semion Handmade
+                    </div>
+                </div>
+                <div class="b_menu__container">
+                    <div class="b_menu__row">
+                        <ul class="b_menuLinks"> 
+                            <li class="m-active"><a href="/">about</a></li>
+                            <li><a href="/projects/">projects</a></li>
+                            <li><a class="i-modal" href="#contactme">contacts</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section >
+        <div class="container">
+            <div class="b_about__personDesc">
+                <div class="b_personDesc_photo col-lg-5">
+                    <img src="<%= apiData.about[0].photo %>" alt="">
+                </div>
+                <div class="b_personDesc__rightText col-lg-7">
+                    <div class="b_personDesc__title">
+                        About me
+                    </div>
+                    <div class="b_personDesc__text">
+                        <%=apiData.about[0].about %>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="b_about__title">
+                Skills
+            </div>
+            <div class="b_about__skills">
+                <div class="b_about__skillsGrid">
+                    <% additionalApiData.skills[0].forEach((el) => { %>
+                        <div class="b_skillsGrid__item"><a href="<%=el.link %>"><%=el.name %></a></div>
+                    <%});%>
+                   
+                </div>
+            </div>
+            <div class="b_about__certificates">
+                <div class="b_about__title">
+                    Certificates
+                </div>
+                <div class="b_about__certificatesGrid">
+                    <% apiData.certificates.forEach((el) => { %>
+                        <div class="b_certificates_item"><img src="<%= el%>"></div>
+                    <%});%>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="b_footer__container">
+                <div class="b_footer_rights">
+                    all rights reserved 2023
+                </div>
+                <div class="b_footer__contacts">
+                    <div class="b_footer__email">
+                       
+                        <a href="tel:<%= contactsApiData.phone %>"> <%= contactsApiData.phone %></a>
+                    </div>
+                    <div class="b_footer__phone">
+                        <a href="mailto:<%= contactsApiData.email %>"><%= contactsApiData.email %></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modals">
+            <div class="b_modal modal " id="contactMe">
+                <div class="container">
+                    <div class="b_modal_body">
+                        <div class="b_modal_title">
+                            Я на связи
+                        </div>
+                        <div class="b_modal_contactFrom">
+                            <div class="b_modal_form">
+                                <div class="b_contact_title">
+                                    Submit a request
+                                </div>
+                                <form action="#" id="form_contact_us">
+                                    <div class="form_control">
+                                       
+                                        <input type="text" required name="user_name" id="user_name">
+                                        <label for="user_name">Your name</label>
+                                    </div>
+                                    <div class="form_control">
+                                        
+                                        <input type="text" required name="user_contact" id="user_contact">
+                                        <label for="user_contact">Your credits</label>
+                                    </div>
+                                    <div class="form_control">
+                                       
+                                        <textarea name="user_message" required id="user_message" pattern="\/"></textarea>
+                                        <label for="user_message">Message</label>
+                                    </div>
+                                   
+                                    <button class="b_btn" type="submit">Submit a request</button>
+                                </form>
+                            </div>
+                            <div class="b_modal_contactInfo">
+                                <div class="b_contact_title">
+                                    My Contacts:
+                                </div>
+                                <ul>
+                                    <li>Email: <a href="mailto:<%= contactsApiData.email %>"><%= contactsApiData.email %></a></li>
+                                    <li>Phone: <a href="tel:<%= contactsApiData.phone %>"><%= contactsApiData.phone %></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
