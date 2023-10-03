@@ -83,10 +83,14 @@ class Projects(models.Model):
     small_description = models.TextField()
     full_description = models.TextField()
     head_photo = models.FileField()
-    additional_photos = models.FileField()
 
     def __str__(self):
         return self.title
 
     class Meta:
         verbose_name_plural = 'Projects settings'
+
+
+class ProjectsImage(models.Model):
+    project = models.ForeignKey(Projects, default=None, on_delete=models.CASCADE)
+    project_photo = models.FileField(upload_to='projects/')

@@ -11,9 +11,16 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import dotenv_values
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = {
+    **dotenv_values(os.path.join(BASE_DIR, '.env.defaults')),
+    **os.environ,
+    **dotenv_values(os.path.join(BASE_DIR, '.env')),
+}
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +32,7 @@ SECRET_KEY = 'django-insecure-0301eo#3nl%kt7y@rki)w^5$&li%7*g@*t%4&t+dkf+7k^x5#y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -77,11 +84,14 @@ WSGI_APPLICATION = 'handmade_by_semion.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': env['DB_POSTGRES_HOST'],
+        'PORT': env['DB_POSTGRES_PORT'],
+        'NAME': env['DB_POSTGRES_DBNAME'],
+        'USER': env['DB_POSTGRES_USERNAME'],
+        'PASSWORD': env['DB_POSTGRES_PASSWORD'],
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

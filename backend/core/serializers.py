@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from django.contrib.auth.models import User
-from .models import PageAbout, PageContacts, EmailMessage, SendEmailSettings, Skills, Tag
+from .models import PageAbout, PageContacts, EmailMessage, SendEmailSettings, Skills, \
+    Tag, Projects
 
 
 class PageAboutSerializer(ModelSerializer):
@@ -41,4 +42,10 @@ class TagSerializer(ModelSerializer):
 
     class Meta:
         model = Tag
+        fields = '__all__'
+
+
+class ProjectsSerializer(ModelSerializer):
+    class Meta:
+        model = Projects
         fields = '__all__'

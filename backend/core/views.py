@@ -116,6 +116,4 @@ class GetSkillFullInfo(APIView):
             'tags': tags_serializer.data,
         }
 
-        return Response({'skil': response})
-
-
+        return Response({'skills': response})
