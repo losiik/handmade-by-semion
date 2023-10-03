@@ -1,21 +1,27 @@
 const axios = require('axios');
 
-async function getDataFromAPI(apiMethod) {
+async function getDataFromAPI(apiMethod, protocol, host, itemName) {
+    const fullLocPath =  protocol + '//' + host;
   try {
-
     let apiUrl;
     switch (apiMethod) {
-        case 'main_page':
-            apiUrl = 'http://localhost:8000/api/method1';
-    }
-    if (apiMethod === 'method1') {
-      apiUrl = 'http://localhost:8000/api/method1';
-    } else if (apiMethod === 'method2') {
-      apiUrl = 'http://localhost:8000/api/method2';
-    } else if (apiMethod === 'method3') {
-      apiUrl = 'http://localhost:8000/api/method3';
-    } else {
-      throw new Error('Неизвестный метод API');
+        case 'about':
+            apiUrl = fullLocPath + '/api/about/';
+            break;
+        case 'project':
+            apiUrl = fullLocPath + '/api/project/';
+            break;
+        case 'project_name':
+            apiUrl = fullLocPath + '/api/project/?project_name=' + itemName;
+            break;
+        case 'skills':
+            apiUrl = fullLocPath + '/api/skills/';
+            break;
+        case 'skill_name':
+            apiUrl = fullLocPath + '/api/skills/?skill_name=' + itemName;
+            break;
+        default:
+            throw new Error('Неизвестный метод API');
     }
 
     const response = await axios.get(apiUrl);
