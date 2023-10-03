@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', async (req, res) => {
   try {
-    const apiData = await getDataFromAPI();
+    const apiData = await getDataFromAPI('method1'); 
     res.render('index', { apiData });
   } catch (error) {
     console.error('Ошибка при получении данных с API:', error);
@@ -20,13 +20,25 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.get('/projects', (req, res) => {
-  res.render('projects/index');
+app.get('/projects', async (req, res) => {
+  try {
+    const apiData = await getDataFromAPI('method2'); 
+    res.render('projects/index', { apiData });
+  } catch (error) {
+    console.error('Ошибка при получении данных с API:', error);
+    res.status(500).send('Внутренняя ошибка сервера');
+  }
 });
 
-app.get('/projects/:project_name', (req, res) => {
+app.get('/projects/:project_name', async (req, res) => {
   const { project_name } = req.params;
-  res.render(`projects/${project_name}/index`);
+  try {
+    const apiData = await getDataFromAPI('method3'); 
+    res.render(`projects/${project_name}/index`, { apiData });
+  } catch (error) {
+    console.error('Ошибка при получении данных с API:', error);
+    res.status(500).send('Внутренняя ошибка сервера');
+  }
 });
 
 app.listen(3000, () => {
