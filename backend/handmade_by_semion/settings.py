@@ -82,14 +82,21 @@ WSGI_APPLICATION = 'handmade_by_semion.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'HOST': env['DB_POSTGRES_HOST'],
+#         'PORT': env['DB_POSTGRES_PORT'],
+#         'NAME': env['DB_POSTGRES_DBNAME'],
+#         'USER': env['DB_POSTGRES_USERNAME'],
+#         'PASSWORD': env['DB_POSTGRES_PASSWORD'],
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': env['DB_POSTGRES_HOST'],
-        'PORT': env['DB_POSTGRES_PORT'],
-        'NAME': env['DB_POSTGRES_DBNAME'],
-        'USER': env['DB_POSTGRES_USERNAME'],
-        'PASSWORD': env['DB_POSTGRES_PASSWORD'],
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
