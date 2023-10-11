@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>:( Page not found</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="b_header__container">
+                <div class="b_logo__container">
+                    <div class="b_logo__img">
+                        <img src="/img/hammer.png" alt="hammer">
+                    </div>
+                    <div class="b_logo_text">
+                        Semion Handmade
+                    </div>
+                </div>
+                <div class="b_menu__container">
+                    <div class="b_menu__row">
+                        <ul class="b_menuLinks"> 
+                            <li><a href="/">about</a></li>
+                            <li><a href="/projects/">projects</a></li>
+                            <li><a class="i-modal" href="#contactme">contacts</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section >
+        <div class="container">
+            <h1>Error</h1>
+            <h3><%=errorCode === 404 ? 'Page not found:( ' : 'Our server is currently down, but we\'re googling how to solve it'%></h3>
+        </div>
+    </section>
+    
+</body>
+</html>
