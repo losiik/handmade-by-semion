@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from django.contrib.auth.models import User
-from .models import PageAbout, PageContacts, EmailMessage, SendEmailSettings, Skills, \
-    Tag, Projects
+from .models import PageAbout, PageContacts, EmailMessage, SendEmailSettings, Skill, \
+    WorkDirection, Projects
 
 
 class PageAboutSerializer(ModelSerializer):
@@ -28,20 +28,20 @@ class EmailMessageSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class SkillsSerializer(ModelSerializer):
+class WorkDirectionSerializer(ModelSerializer):
     class Meta:
-        model = Skills
+        model = WorkDirection
         fields = '__all__'
 
 
-class TagSerializer(ModelSerializer):
+class SkillSerializer(ModelSerializer):
     def to_representation(self, instance):
-        rep = super(TagSerializer, self).to_representation(instance)
-        rep['skill'] = instance.skill.skill
+        rep = super(SkillSerializer, self).to_representation(instance)
+        rep['work_direction'] = instance.work_direction.work_direction
         return rep
 
     class Meta:
-        model = Tag
+        model = Skill
         fields = '__all__'
 
 

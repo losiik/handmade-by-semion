@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import PageAbout, PageContacts, SendEmailSettings, EmailMessage, Skills, Tag, \
-    CertificatesImage, ProjectsImage, Projects
+from .models import (PageAbout, PageContacts, SendEmailSettings, EmailMessage, Skill,
+                     WorkDirection, CertificatesImage, ProjectsImage, Projects)
 
 
 class CertificatesImageAdmin(admin.StackedInline):
@@ -37,13 +37,13 @@ class EmailMessageAdmin(admin.ModelAdmin):
         return {}
 
 
-@admin.register(Skills)
+@admin.register(Skill)
 class SkillsAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
+@admin.register(WorkDirection)
+class WorkDirectionAdmin(admin.ModelAdmin):
     pass
 
 

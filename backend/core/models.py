@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 
 
 class PageAbout(models.Model):
@@ -60,26 +61,36 @@ class PageContacts(models.Model):
         verbose_name_plural = 'Contacts settings'
 
 
-class Skills(models.Model):
+class WorkDirection(models.Model):
+    work_direction = models.CharField(max_length=255)
+    description = models.TextField(default=None)
+    slug = models.SlugField(default=None, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.work_direction)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.work_direction
+
+
+class Skill(models.Model):
+    work_direction = models.ForeignKey(WorkDirection, on_delete=models.CASCADE, default=None)
     skill = models.CharField(max_length=255)
     description = models.TextField(default=None)
+    slug = models.SlugField(default=None, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.skill)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.skill
 
 
-class Tag(models.Model):
-    skill = models.ForeignKey(Skills, on_delete=models.CASCADE, default=None)
-    tag = models.CharField(max_length=255)
-    description = models.TextField(default=None)
-
-    def __str__(self):
-        return self.tag
-
-
 class Projects(models.Model):
     title = models.CharField(max_length=300, default='max title length is 300 characters')
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
     small_description = models.TextField()
     full_description = models.TextField()
     head_photo = models.FileField()

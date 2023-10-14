@@ -2,10 +2,10 @@ from django.forms import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import PageAbout, PageContacts, SendEmailSettings, Skills, Tag, CertificatesImage
+from .models import PageAbout, PageContacts, SendEmailSettings, Skill, WorkDirection, CertificatesImage
 from .send_mail import SendMail
 from .serializers import PageAboutSerializer, PageContactsSerializer, SendEmailSettingsSerializer, \
-    EmailMessageSerializer, SkillsSerializer, TagSerializer
+    EmailMessageSerializer, SkillSerializer, WorkDirection
 
 
 class PageAboutView(APIView):
@@ -60,60 +60,109 @@ class EmailMessageView(APIView):
         return Response({"Send email success": send_mail.send_email()})
 
 
-class SkillsView(APIView):
-    queryset = PageContacts.objects.all()
-    serializer_class = PageContactsSerializer
-
+class GetFiltersView(APIView):
     @csrf_exempt
     def get(self, request):
-        skills = Skills.objects.all()
-        serializer = SkillsSerializer(skills, many=True)
-        return Response({"skills": serializer.data})
+        response = {'all_skills': []}
+        skills = Skill.objects.all().order_by('work_direction')
+
+        for skill in skills:
+            response['all_skills'].append({'skill': skill.skill, 'slug': skill.slug})
+        return Response(response)
 
 
-class GetAllTagsView(APIView):
+class GetAllWorkDirView(APIView):
     @csrf_exempt
     def get(self, request):
+        response = {'all_work_dir': []}
+        work_dirs = WorkDirection.objects.all().order_by('work_direction')
+
+        for work_dir in work_dirs:
+            response['all_work_dir'].append(
+                {
+                    'name': work_dir.work_direction,
+                    'slug': work_dir.slug
+                }
+            )
+        return Response(response)
+
+
+class GetFullWorkDirInfoView(APIView):
+    @csrf_exempt
+    def get(self, request):
+        slug = request.query_params.get('slug')
         response = {}
 
-        skills = Skills.objects.all()
-        skills_serializer = SkillsSerializer(skills, many=True)
+        work_dir = WorkDirection.objects.filter(slug=slug)[0]
 
-        for skill in skills_serializer.data:
-            tags = Tag.objects.filter(skill=skill['id'])
-            tags_serializer = TagSerializer(tags, many=True)
-            response[skill['skill']] = []
-            for tag in tags_serializer.data:
-                response[skill['skill']].append(
-                    {
-                        'id': tag['id'],
-                        'tag': tag['tag']
-                    }
-                )
+        response['work_dir'] = work_dir.work_direction
+        response['description'] = work_dir.description
+        response['skills'] = []
 
-        return Response({"all_tags": response})
+        skills = Skill.objects.filter(work_direction=work_dir.id)
+
+        for skill in skills:
+            response['skills'].append(
+                {'skill_name': skill.skill, 'skill_description': skill.description}
+            )
+
+        return Response(response)
 
 
-class TagView(APIView):
-    queryset = Tag.objects.all()
-    serializer_class = TagSerializer
+# class SkillView(APIView):
+#     queryset = PageContacts.objects.all()
+#     serializer_class = PageContactsSerializer
+
+    # @csrf_exempt
+    # def get(self, request):
+    #     skills = Skills.objects.all()
+    #     serializer = SkillsSerializer(skills, many=True)
+    #     return Response({"skills": serializer.data})
 
 
-class GetSkillFullInfo(APIView):
-    @csrf_exempt
-    def get(self, request):
-        skill = request.query_params.get('skill')
-        skill = Skills.objects.filter(skill=skill)
-        skills_serializer = SkillsSerializer(skill, many=True)
-        skill_data = skills_serializer.data
+# class GetAllTagsView(APIView):
+#     @csrf_exempt
+#     def get(self, request):
+#         response = {}
+#
+#         skills = Skills.objects.all()
+#         skills_serializer = SkillsSerializer(skills, many=True)
+#
+#         for skill in skills_serializer.data:
+#             tags = Tag.objects.filter(skill=skill['id'])
+#             tags_serializer = TagSerializer(tags, many=True)
+#             response[skill['skill']] = []
+#             for tag in tags_serializer.data:
+#                 response[skill['skill']].append(
+#                     {
+#                         'id': tag['id'],
+#                         'tag': tag['tag']
+#                     }
+#                 )
+#
+#         return Response({"all_tags": response})
+#
+#
+# class TagView(APIView):
+#     queryset = Tag.objects.all()
+#     serializer_class = TagSerializer
 
-        tags = Tag.objects.filter(skill=skill_data[0]['id'])
-        tags_serializer = TagSerializer(tags, many=True)
 
-        response = {
-            'skill': skill_data[0]['skill'],
-            'description': skill_data[0]['description'],
-            'tags': tags_serializer.data,
-        }
-
-        return Response({'skills': response})
+# class GetSkillFullInfo(APIView):
+#     @csrf_exempt
+#     def get(self, request):
+#         skill = request.query_params.get('skill')
+#         skill = Skills.objects.filter(skill=skill)
+#         skills_serializer = SkillsSerializer(skill, many=True)
+#         skill_data = skills_serializer.data
+#
+#         tags = Tag.objects.filter(skill=skill_data[0]['id'])
+#         tags_serializer = TagSerializer(tags, many=True)
+#
+#         response = {
+#             'skill': skill_data[0]['skill'],
+#             'description': skill_data[0]['description'],
+#             'tags': tags_serializer.data,
+#         }
+#
+#         return Response({'skills': response})
