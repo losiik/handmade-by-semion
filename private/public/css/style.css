@@ -377,6 +377,7 @@ height: 400px;
 }
 .b_modal_body::after, .b_modal_closeX {
     content: '\00d7';
+    cursor: pointer;
     position: absolute;
     transform: scale(4);
     top: -35px;
