@@ -89,14 +89,19 @@ class Skill(models.Model):
 
 
 class Projects(models.Model):
-    title = models.CharField(max_length=300, default='max title length is 300 characters')
+    project_name = models.CharField(max_length=300, default='max project_name length is 300 characters')
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
-    small_description = models.TextField()
+    preview_description = models.TextField()
     full_description = models.TextField()
     head_photo = models.FileField()
+    slug = models.SlugField(default=None, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.project_name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.title
+        return self.project_name
 
     class Meta:
         verbose_name_plural = 'Projects settings'

@@ -2,7 +2,8 @@ from django.forms import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import PageAbout, PageContacts, SendEmailSettings, Skill, WorkDirection, CertificatesImage
+from .models import (PageAbout, PageContacts, Projects, SendEmailSettings, Skill, WorkDirection,
+                     CertificatesImage, ProjectsImage)
 from .send_mail import SendMail
 from .serializers import PageAboutSerializer, PageContactsSerializer, SendEmailSettingsSerializer, \
     EmailMessageSerializer, SkillSerializer, WorkDirection
@@ -109,60 +110,67 @@ class GetFullWorkDirInfoView(APIView):
         return Response(response)
 
 
-# class SkillView(APIView):
-#     queryset = PageContacts.objects.all()
-#     serializer_class = PageContactsSerializer
+class GetAllProjectsView(APIView):
+    @csrf_exempt
+    def get(self, request):
+        response = {}
+        response['selected_skill'] = ''
+        response['projects'] = []
 
-    # @csrf_exempt
-    # def get(self, request):
-    #     skills = Skills.objects.all()
-    #     serializer = SkillsSerializer(skills, many=True)
-    #     return Response({"skills": serializer.data})
+        projects = Projects.objects.all()
 
+        for project in projects:
+            response['projects'].append(
+                {
+                    'project_name': project.project_name,
+                    'preview_description': project.preview_description,
+                    'head_photo': project.head_photo.file.name,
+                    'slug': project.slug
+                }
+            )
 
-# class GetAllTagsView(APIView):
-#     @csrf_exempt
-#     def get(self, request):
-#         response = {}
-#
-#         skills = Skills.objects.all()
-#         skills_serializer = SkillsSerializer(skills, many=True)
-#
-#         for skill in skills_serializer.data:
-#             tags = Tag.objects.filter(skill=skill['id'])
-#             tags_serializer = TagSerializer(tags, many=True)
-#             response[skill['skill']] = []
-#             for tag in tags_serializer.data:
-#                 response[skill['skill']].append(
-#                     {
-#                         'id': tag['id'],
-#                         'tag': tag['tag']
-#                     }
-#                 )
-#
-#         return Response({"all_tags": response})
-#
-#
-# class TagView(APIView):
-#     queryset = Tag.objects.all()
-#     serializer_class = TagSerializer
+        return Response(response)
 
 
-# class GetSkillFullInfo(APIView):
-#     @csrf_exempt
-#     def get(self, request):
-#         skill = request.query_params.get('skill')
-#         skill = Skills.objects.filter(skill=skill)
-#         skills_serializer = SkillsSerializer(skill, many=True)
-#         skill_data = skills_serializer.data
-#
-#         tags = Tag.objects.filter(skill=skill_data[0]['id'])
-#         tags_serializer = TagSerializer(tags, many=True)
-#
-#         response = {
-#             'skill': skill_data[0]['skill'],
-#             'description': skill_data[0]['description'],
-#             'tags': tags_serializer.data,
-#         }
-#
-#         return Response({'skills': response})
+class GetFullProjectInfoView(APIView):
+    @csrf_exempt
+    def get(self, request):
+        slug = request.query_params.get('slug')
+        response = {}
+        project = Projects.objects.filter(slug=slug)[0]
+
+        response['project_name'] = project.project_name
+        response['slug'] = project.slug
+        response['full_description'] = project.full_description
+        response['photos'] = []
+
+        projects_imgs = ProjectsImage.objects.filter(project=project.id)
+        for img in projects_imgs:
+            response['photos'].append(img.project_photo.file.name)
+
+        return Response(response)
+
+
+class GetProjectsBySkill(APIView):
+    @csrf_exempt
+    def get(self, request):
+        skill_slug = request.query_params.get('skill_slug')
+        response = {}
+
+        skill = Skill.objects.filter(slug=skill_slug)[0]
+        response['selected_skill'] = skill.skill
+
+        projects = Projects.objects.filter(skill=skill.id)
+        response['projects'] = []
+
+        for project in projects:
+            response['projects'].append(
+                {
+                    'project_name': project.project_name,
+                    'preview_description': project.preview_description,
+                    'head_photo': project.head_photo.file.name,
+                    'slug': project.slug
+                }
+            )
+
+        return Response(response)
