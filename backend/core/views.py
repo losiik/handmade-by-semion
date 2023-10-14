@@ -1,3 +1,4 @@
+from django.db.models import QuerySet
 from django.forms import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
@@ -17,13 +18,20 @@ class PageAboutView(APIView):
     def get(self, request):
         certificates = []
         main_page = PageAbout.objects.all()
-        serializer = PageAboutSerializer(main_page, many=True)
+
+        if not main_page:
+            return Response(
+                {"about": [{"about": "", "photo": ""}], "certificates": []}
+            )
+        main_page = main_page[0]
         certificates_data = CertificatesImage.objects.all()
 
         for certificate_data in certificates_data:
             certificates.append(certificate_data.certificates.path)
 
-        return Response({"about": serializer.data, "certificates": certificates})
+        return Response(
+            {"about": [{"about": main_page.about, "photo": main_page.photo.file.name}], "certificates": certificates}
+        )
 
 
 class PageContactsView(APIView):
