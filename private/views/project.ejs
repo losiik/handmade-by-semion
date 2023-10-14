@@ -50,6 +50,7 @@
                     <%=apiData.selected_skill !== '' ? apiData.selected_skill : 'Filter by Tag' %>
                     <div class="b_filter__list">
                         <ul>
+                            <li><a href="/projects/">All projects</a></li>
                             <% tagData.all_skills.forEach((tag) => { %>
                                 <li><a href="/projects/?tag=<%= tag.slug %>"><%=tag.skill%></a></li>
                             <% }) %>
@@ -133,6 +134,7 @@
                                     <li>Email: <a href="mailto:<%= contactsApiData.contacts[0].email %>"><%= contactsApiData.contacts[0].email %></a></li>
                                     <li>Phone: <a href="tel:<%= contactsApiData.contacts[0].phone %>"><%= contactsApiData.contacts[0].phone %></a></li>
                                 </ul>
+                                <select name="" id=""></select>
                             </div>
                         </div>
                         <div class="b_modal_closeX"></div>

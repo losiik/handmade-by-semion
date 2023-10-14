@@ -98,7 +98,7 @@ app.get('/:skill_name/', async (req, res) => {
     const { skill_name }= req.params;
     const contactsApiData = await getDataFromAPI('contacts'); 
   try {
-    const apiData = await getDataFromAPI('skills_item', skill_name); 
+    const apiData = await getDataFromAPI('get_full_work_dir_info', skill_name); 
     res.render(`skill_item`, { apiData, host, protocol,contactsApiData });
   } catch (error) {
     console.error('Ошибка при получении данных с API:', error);

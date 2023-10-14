@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="robots" content="index, follow">
-    <meta name="description" content="The best <%= apiData. %> in Seattle">
+    <meta name="description" content="The bestin Seattle">
     <meta property="og:title" content="Handmade by Semion">
-    <meta property="og:description" content="The best <%= apiData. %> in Seattle">
-    <meta property="og:image" content="<%= protocol + "//" + host %>/img/og_image.png">
+    <meta property="og:description" content="The best <%= apiData.name %> in Seattle">
+    <meta property="og:image" content="/img/og_image.png">
     <meta property="og:url" content="<%= protocol + "//" + host %>">
     <meta property="og:site_name" content='<%= protocol + "//" + host %>'>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -51,21 +51,21 @@
                 </div>
             </div>
             <div class="b_cardList__grid">
-                <% apiData.skills.forEach((skill) => {%>
+                <% apiData.skills.forEach(skill => { %>
                     <div class="b_cardItem">
                         <div class="b_card__description">
                             <div class="b_card__title">
-                               <%= skill.skill_name %>
+                               <%- skill.skill_name %>
                             </div>
                             <div class="b_card__text">
-                                <%= skill.skill_description %>
+                                <%- skill.skill_description %>
                             </div>
                             <div class="b_card_callToAction">
-                                <a class="b_btn b_btn_card" href="#contactMe">Заказать</a>
+                                <a class="b_btn i-modal b_btn_card" href="#contactMe" data-inner-form="<%= skill.skill_name%>">Заказать</a>
                             </div>
                         </div>
                     </div>
-                <% }) %>
+                    <% }); %>
             </div>
         </div>
     </section>
@@ -77,6 +77,7 @@
                 </div>
                 <div class="b_footer__contacts">
                     <div class="b_footer__email">
+                       
                         <a href="tel:<%= contactsApiData.contacts[0].phone %>"> <%= contactsApiData.contacts[0].phone %></a>
                     </div>
                     <div class="b_footer__phone">
@@ -86,18 +87,18 @@
             </div>
         </div>
         <div class="modals">
-            <div class="b_modal modal" id="contactMe">
+            <div class="b_modal modal " id="contactMe">
                 <div class="container">
                     <div class="b_modal_body">
                         <div class="b_modal_title">
-                            Я на связи
+                            Contact me!
                         </div>
                         <div class="b_modal_contactFrom">
                             <div class="b_modal_form">
                                 <div class="b_contact_title">
                                     Submit a request
                                 </div>
-                                <form action="#">
+                                <form action="#" id="form_contact_us">
                                     <div class="form_control">
                                        
                                         <input type="text" required name="user_name" id="user_name">
@@ -127,11 +128,16 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="b_modal_closeX"></div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <script src="/js/app.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>
