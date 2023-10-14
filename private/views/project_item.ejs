@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="robots" content="index, follow">
-    <meta name="description" content="description">
-    <meta property="og:title" content="ANCOR – движущая сила кадровой индустрии">
-    <meta property="og:description" content="Лидер в области рекрутмента, аутсорсинга HR и других бизнес функций, кадрового консалтинга. Лучшие вакансии рынка труда и советы по поиску работы">
-    <meta property="og:image" content="https://ancor.ru/include/default/og_image.jpg">
-    <meta property="og:url" content="">
-    <meta property="og:site_name" content="https://ancor.ru">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Houserepair by Semion</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="A Jack of all trades in Seattle is presenting his project <%= apiData.project_name%>">
+        <meta property="og:title" content="Project – <%= apiData.project_name%>">
+        <meta property="og:description" content="A Jack of all trades in Seattle is presenting his project <%= apiData.project_name%>">
+        <meta property="og:image" content="/img/og_image.png">
+        <meta property="og:url" content="<%= protocol + "//" + host %>">
+        <meta property="og:site_name" content='<%= protocol + "//" + host %>'>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="shortcut icon" href="/img/og_image.png" type="image/x-icon">
+        <title>Project – <%= apiData.project_name%></title>
+    </head>
 <body>
     <header>
         <div class="container">
             <div class="b_header__container">
                 <div class="b_logo__container">
                     <div class="b_logo__img">
-                        <img src="../img/hammer.png" alt="hammer">
+                        <img src="/img/hammer.png" alt="hammer">
                     </div>
                     <div class="b_logo_text">
-                        SemeN Handmade
+                        Semion Handmade
                     </div>
                 </div>
                 <div class="b_menu__container">
                     <div class="b_menu__row">
                         <ul class="b_menuLinks"> 
-                            <li><a href="">about</a></li>
-                            <li class="m-active"><a href="">projects</a></li>
-                            <li><a href="">contacts</a></li>
+                            <li><a href="/">about</a></li>
+                            <li class="m-active"><a href="/projects/">projects</a></li>
+                            <li><a class="i-modal" href="#contactMe">contacts</a></li>
                         </ul>
                     </div>
                 </div>
@@ -43,27 +44,28 @@
         <div class="container">
            
             <div class="b_projectDetail__mainText">
-                <h1>Бабкина тахта</h1>
+                <h1><%= apiData.project_name %></h1>
                 <div class="b_projectDetail__mainDesc">
-                    <p>Меня зовут Семен, у меня золотое руки. Я мастер на все руки, с 25 летнем стажем. Произвожу ремонтные работы любой сложности - делаю круто, а не кртуо не делаю. И еще какое-то классное описание о том как великолепно со мной сотрудничать, но я пока не придумал.
-                        Лучший выбор, который вы можете сделать сегодня - позвонить мне. Я как джин решу все ваши бытовые проблемы. </p>
-                    <p>Меня зовут Семен, у меня золотое руки. Я мастер на все руки, с 25 летнем стажем. Произвожу ремонтные работы любой сложности - делаю круто, а не кртуо не делаю. И еще какое-то классное описание о том как великолепно со мной сотрудничать, но я пока не придумал.</p>
+                    <%= apiData.full_description  %>
                 </div>
             </div>
-            <div class="b_otherPhotoGrid__title">Фотографии проекта:</div>        
+            <div class="b_otherPhotoGrid__title">Photos of the project:</div>        
            <div class="b_photoGrid">
-                <div class="b_projectDetail__evenPhotoGrid">
-                    <div class="photo"><img src="../img/photo_test.png" alt=""></div>
-                    <div class="photo"><img src="../img/photo_test.png" alt=""></div>
-                </div>
-                <div class="b_projectDetail__oddPhotoGrid">
-                    <div class="photo"><img src="../img/photo_test.png" alt=""></div>
-                    <div class="photo"><img src="../img/photo_test.png" alt=""></div>
-                </div>
-                <div class="b_projectDetail__100widthPhotoGrid">
-                    <div class="photo"><img src="../img/photo_test.png" alt=""></div>
-                   
-                </div>
+            <% let i = 0 %>
+            <% if(apiData.photos.length !== 0 ) { %>
+                <% while(i < apiData.photos.length) {%>
+
+                    <%  if (i !== apiData.photos.length - 1) {%>
+                        <div class="photo"><img src="<%= apiData.photos[i]%>" alt="project photo"></div>
+                    <%} else if (apiData.photos.length % 2 !== 0 && i == apiData.photos.length - 1) {%>
+                        <div class="photo" style="grid-column: auto / span 7;"><img src="<%= apiData.photos[i]%>" alt="last project photo"></div>
+                 
+                    <%} else if (apiData.photos.length % 2 == 0 && i == apiData.photos.length - 1) {%>
+                        <div class="photo" ><img src="<%= apiData.photos[i]%>" alt="last project photo"></div>
+                    <% }  %>
+                <% i++ %>
+                <% } %>
+            <% }  %>
            </div>
         </div>
     </section>
@@ -75,27 +77,28 @@
                 </div>
                 <div class="b_footer__contacts">
                     <div class="b_footer__email">
-                        <a href="tel:79999999999">7-999-999-99-99</a>
+                       
+                        <a href="tel:<%= contactsApiData.contacts[0].phone %>"> <%= contactsApiData.contacts[0].phone %></a>
                     </div>
                     <div class="b_footer__phone">
-                        <a href="mailto:test@test.com">test@test.com</a>
+                        <a href="mailto:<%= contactsApiData.contacts[0].email %>"><%= contactsApiData.contacts[0].email %></a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modals">
-            <div class="b_modal modal">
+            <div class="b_modal modal " id="contactMe">
                 <div class="container">
                     <div class="b_modal_body">
                         <div class="b_modal_title">
-                            Я на связи
+                            Contact me!
                         </div>
                         <div class="b_modal_contactFrom">
                             <div class="b_modal_form">
                                 <div class="b_contact_title">
                                     Submit a request
                                 </div>
-                                <form action="#">
+                                <form action="#" id="form_contact_us">
                                     <div class="form_control">
                                        
                                         <input type="text" required name="user_name" id="user_name">
@@ -120,16 +123,17 @@
                                     My Contacts:
                                 </div>
                                 <ul>
-                                    <li>Email: <a href="mailto:pochta@gmail.com">pochta@gmail.com</a></li>
-                                    <li>Phone: <a href="tel:+14255246909">+14255246909</a></li>
+                                    <li>Email: <a href="mailto:<%= contactsApiData.contacts[0].email %>"><%= contactsApiData.contacts[0].email %></a></li>
+                                    <li>Phone: <a href="tel:<%= contactsApiData.contacts[0].phone %>"><%= contactsApiData.contacts[0].phone %></a></li>
                                 </ul>
                             </div>
                         </div>
+                        <div class="b_modal_closeX"></div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <script src="js/app.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>

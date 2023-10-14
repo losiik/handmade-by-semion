@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="robots" content="index, follow">
-    <meta name="description" content="description">
+    <meta name="description" content="A Jack of all trades in Seattle, the best home repairs, all types of work, plumbing work">
     <meta property="og:title" content="Handmade by Semion">
-    <meta property="og:description" content="Best hand">
-    <meta property="og:image" content="<%= protocol + "//" + host %>/img/og_image.jpg">
+    <meta property="og:description" content="A Jack of all trades in Seattle, the best home repairs, all types of work, plumbing work">
+    <meta property="og:image" content="<%= protocol + "//" + host %>/img/og_image.png">
     <meta property="og:url" content="<%= protocol + "//" + host %>">
     <meta property="og:site_name" content='<%= protocol + "//" + host %>'>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Handmade by Semion</title>
 </head>
 <body>
@@ -21,7 +21,7 @@
             <div class="b_header__container">
                 <div class="b_logo__container">
                     <div class="b_logo__img">
-                        <img src="img/hammer.png" alt="hammer">
+                        <img src="/img/hammer.png" alt="hammer">
                     </div>
                     <div class="b_logo_text">
                         Semion Handmade
@@ -32,7 +32,7 @@
                         <ul class="b_menuLinks"> 
                             <li class="m-active"><a href="/">about</a></li>
                             <li><a href="/projects/">projects</a></li>
-                            <li><a class="i-modal" href="#contactme">contacts</a></li>
+                            <li><a class="i-modal" href="#contactMe">contacts</a></li>
                         </ul>
                     </div>
                 </div>
@@ -43,14 +43,14 @@
         <div class="container">
             <div class="b_about__personDesc">
                 <div class="b_personDesc_photo col-lg-5">
-                    <img src="<%= apiData.about[0].photo %>" alt="">
+                    <img src="<%= apiData.about[0].photo !== null ? apiData.about[0].photo : '/img/og_image.png>'%>" alt="HandmadeBySemion">
                 </div>
                 <div class="b_personDesc__rightText col-lg-7">
                     <div class="b_personDesc__title">
                         About me
                     </div>
                     <div class="b_personDesc__text">
-                        <%=apiData.about[0].about %>
+                        <%=apiData.about[0].about%>
                     </div>
                    
                 </div>
@@ -60,10 +60,9 @@
             </div>
             <div class="b_about__skills">
                 <div class="b_about__skillsGrid">
-                    <% additionalApiData.skills[0].forEach((el) => { %>
-                        <div class="b_skillsGrid__item"><a href="<%=el.link %>"><%=el.name %></a></div>
-                    <%});%>
-                   
+                    <% additionalApiData.all_work_dir.forEach((dir) => { %>
+                        <div class="b_skillsGrid__item"><a class="i-link" href="<%= dir.slug %>"><%= dir.name %></a></div>
+                    <% }) %>
                 </div>
             </div>
             <div class="b_about__certificates">
@@ -88,10 +87,10 @@
                 <div class="b_footer__contacts">
                     <div class="b_footer__email">
                        
-                        <a href="tel:<%= contactsApiData.phone %>"> <%= contactsApiData.phone %></a>
+                        <a href="tel:<%= contactsApiData.contacts[0].phone %>"> <%= contactsApiData.contacts[0].phone %></a>
                     </div>
                     <div class="b_footer__phone">
-                        <a href="mailto:<%= contactsApiData.email %>"><%= contactsApiData.email %></a>
+                        <a href="mailto:<%= contactsApiData.contacts[0].email %>"><%= contactsApiData.contacts[0].email %></a>
                     </div>
                 </div>
             </div>
@@ -101,7 +100,7 @@
                 <div class="container">
                     <div class="b_modal_body">
                         <div class="b_modal_title">
-                            Я на связи
+                            Contact me!
                         </div>
                         <div class="b_modal_contactFrom">
                             <div class="b_modal_form">
@@ -133,11 +132,12 @@
                                     My Contacts:
                                 </div>
                                 <ul>
-                                    <li>Email: <a href="mailto:<%= contactsApiData.email %>"><%= contactsApiData.email %></a></li>
-                                    <li>Phone: <a href="tel:<%= contactsApiData.phone %>"><%= contactsApiData.phone %></a></li>
+                                    <li>Email: <a href="mailto:<%= contactsApiData.contacts[0].email %>"><%= contactsApiData.contacts[0].email %></a></li>
+                                    <li>Phone: <a href="tel:<%= contactsApiData.contacts[0].phone %>"><%= contactsApiData.contacts[0].phone %></a></li>
                                 </ul>
                             </div>
                         </div>
+                        <div class="b_modal_closeX"></div>
                     </div>
                 </div>
             </div>
@@ -147,6 +147,6 @@
   src="https://code.jquery.com/jquery-3.7.1.min.js"
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
   crossorigin="anonymous"></script>
-<script src="js/app.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>

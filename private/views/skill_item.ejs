@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="The best <%= apiData. %> in Seattle">
+    <meta property="og:title" content="Handmade by Semion">
+    <meta property="og:description" content="The best <%= apiData. %> in Seattle">
+    <meta property="og:image" content="<%= protocol + "//" + host %>/img/og_image.png">
+    <meta property="og:url" content="<%= protocol + "//" + host %>">
+    <meta property="og:site_name" content='<%= protocol + "//" + host %>'>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Handmade by Semion</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="b_header__container">
+                <div class="b_logo__container">
+                    <div class="b_logo__img">
+                        <img src="/img/hammer.png" alt="hammer">
+                    </div>
+                    <div class="b_logo_text">
+                        Semion Handmade
+                    </div>
+                </div>
+                <div class="b_menu__container">
+                    <div class="b_menu__row">
+                        <ul class="b_menuLinks"> 
+                            <li ><a href="/">about</a></li>
+                            <li><a href="/projects/">projects</a></li>
+                            <li><a class="i-modal" href="#contactMe">contacts</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section>
+        <div class="container">
+            <div class="b_skills__header">
+                <div class="b_portfolio__text">
+                   <%= apiData.work_dir%>
+                </div>
+                <div class="b_portfoliio__desc">
+                    <%= apiData.description%>
+                </div>
+            </div>
+            <div class="b_cardList__grid">
+                <% apiData.skills.forEach((skill) => {%>
+                    <div class="b_cardItem">
+                        <div class="b_card__description">
+                            <div class="b_card__title">
+                               <%= skill.skill_name %>
+                            </div>
+                            <div class="b_card__text">
+                                <%= skill.skill_description %>
+                            </div>
+                            <div class="b_card_callToAction">
+                                <a class="b_btn b_btn_card" href="#contactMe">Заказать</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="b_footer__container">
+                <div class="b_footer_rights">
+                    all rights reserved 2023
+                </div>
+                <div class="b_footer__contacts">
+                    <div class="b_footer__email">
+                        <a href="tel:<%= contactsApiData.contacts[0].phone %>"> <%= contactsApiData.contacts[0].phone %></a>
+                    </div>
+                    <div class="b_footer__phone">
+                        <a href="mailto:<%= contactsApiData.contacts[0].email %>"><%= contactsApiData.contacts[0].email %></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modals">
+            <div class="b_modal modal" id="contactMe">
+                <div class="container">
+                    <div class="b_modal_body">
+                        <div class="b_modal_title">
+                            Я на связи
+                        </div>
+                        <div class="b_modal_contactFrom">
+                            <div class="b_modal_form">
+                                <div class="b_contact_title">
+                                    Submit a request
+                                </div>
+                                <form action="#">
+                                    <div class="form_control">
+                                       
+                                        <input type="text" required name="user_name" id="user_name">
+                                        <label for="user_name">Your name</label>
+                                    </div>
+                                    <div class="form_control">
+                                        
+                                        <input type="text" required name="user_contact" id="user_contact">
+                                        <label for="user_contact">Your credits</label>
+                                    </div>
+                                    <div class="form_control">
+                                       
+                                        <textarea name="user_message" required id="user_message" pattern="\/"></textarea>
+                                        <label for="user_message">Message</label>
+                                    </div>
+                                   
+                                    <button class="b_btn" type="submit">Submit a request</button>
+                                </form>
+                            </div>
+                            <div class="b_modal_contactInfo">
+                                <div class="b_contact_title">
+                                    My Contacts:
+                                </div>
+                                <ul>
+                                    <li>Email: <a href="mailto:<%= contactsApiData.contacts[0].email %>"><%= contactsApiData.contacts[0].email %></a></li>
+                                    <li>Phone: <a href="tel:<%= contactsApiData.contacts[0].phone %>"><%= contactsApiData.contacts[0].phone %></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/app.js"></script>
+</body>
+</html>

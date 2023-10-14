@@ -8,10 +8,10 @@ async function getDataFromAPI(apiMethod, itemName) {
             apiUrl = 'http://localhost:8000/api/main_page/';
             break;
         case 'projects':
-            apiUrl = 'http://localhost:8000/api/projects/';
+            apiUrl = 'http://localhost:8000/api/get_all_projects/';
             break;
-        case 'project_name':
-            apiUrl = `http://localhost:8000/api/project_full_info/?project=${itemName}`;
+        case 'project_item':
+            apiUrl = `http://localhost:8000/api/get_full_project_info/?slug=${itemName}`;
             break;
         case 'skills':
             apiUrl = 'http://localhost:8000/api/all_skills/';
@@ -19,11 +19,17 @@ async function getDataFromAPI(apiMethod, itemName) {
         case 'skill_name':
             apiUrl = `http://localhost:8000/api/skill_full_info/?skil=${itemName}`;
             break;
-        case 'all_tags':
-            apiUrl = 'http://localhost:8000/api/all_tags/';
+        case 'project_full_info':
+            apiUrl = `http://localhost:8000/api/get_projects_by_skill/?skill_slug=${itemName}`;
             break;
-        case 'tags':
-            apiUrl = `http://localhost:8000/api/projects/?tag=${itemName}`;
+        case 'get_all_work_dir':
+            apiUrl = `http://localhost:8000/api/get_all_work_dir/`;
+            break;
+        case 'get_filter':
+            apiUrl = 'http://localhost:8000/api/get_filter/';
+            break;
+        case 'get_full_work_dir_info':
+            apiUrl = `http://localhost:8000/api/get_full_work_dir_info/?slug=${itemName}`;
             break;
         case 'contacts':
             apiUrl = 'http://localhost:8000/api/contacts_page/';

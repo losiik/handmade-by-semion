@@ -10,15 +10,24 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+const serialize = function(obj) {
+  var str = [];
+  for (var p in obj)
+    if (obj.hasOwnProperty(p)) {
+      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+    }
+  return str.join("&");
+}
+
+//DONE
 app.get('/', async (req, res) => {
   const protocol = req.protocol;
   const host = req.get('host'); 
-
   try {
     const apiData = await getDataFromAPI('about'); 
-    const additionalApiData = await getDataFromAPI('all_skills'); 
+    const additionalApiData = await getDataFromAPI('get_all_work_dir'); 
     const contactsApiData = await getDataFromAPI('contacts'); 
-    res.render('index', { apiData, additionalApiData, contactsApiData, host, protocol });
+    res.render('about', { apiData, contactsApiData, additionalApiData, host, protocol });
   } catch (error) {
     console.error('Ошибка при получении данных с API:', error);
     res.status(500).render('error',{ errorCode: 500});
@@ -26,64 +35,71 @@ app.get('/', async (req, res) => {
 
 });
 
-app.get('/projects', async (req, res) => {
-    const protocol = req.protocol; // 'http' или 'https'
-    const host = req.get('host');  //
-  try {
-    const apiData = await getDataFromAPI('projects'); 
-    res.render('project', { apiData,host, protocol});
-  } catch (error) {
-    console.error('Ошибка при получении данных с API:', error);
-    res.status(500).render('error',{ errorCode: 500});
-  }
+// DONE 
+app.get('/projects/', async (req, res) => {
+  const protocol = req.protocol; // 'http' или 'https'
+  const host = req.get('host');  //
+    const params = req.query;
+    // http://localhost/projects/?show_more=1&tag=some-text2
+    // params = {"show_more": 1, "tag": "some-text2"}
+    if (params.show_more !== undefined) {
+      try {
+        const contactsApiData = await getDataFromAPI('contacts');
+        if(params.tag !== undefined) {
+          var firstapiData = await getDataFromAPI('project_full_info', params.tag); 
+        } else {
+          var firstapiData = await getDataFromAPI('projects'); 
+        }
+       
+        let apiData = [];
+        apiData.selected_skill = firstapiData.selected_skill
+        let cardsToShow;
+        let showMoreValue = parseInt(params.show_more);
+        if (firstapiData.projects.length > showMoreValue * 6) {
+          cardsToShow = showMoreValue * 6;
+        } else {
+            cardsToShow = firstapiData.projects.length;
+        };
+        for (let index = 0; index < cardsToShow; index++) {
+          apiData.push(firstapiData.projects[index]);
+        }
+        console.log(apiData)
+        const tagData = await getDataFromAPI('get_filter'); 
+        res.render('project', { apiData, tagData, host, protocol,contactsApiData });
+      } catch (error) {
+        console.error('Ошибка при получении данных с API:', error);
+        res.status(500).render('error',{ errorCode: 500});
+      }
+    } else if (params.tag !== undefined) {
+      res.redirect(`/projects/?show_more=1&tag=${params.tag}`);
+    }else if (params.tag == undefined) {
+      res.redirect(`/projects/?show_more=1`);
+    }
+ 
 });
 
-app.get('/projects/?tag=:tag', async (req, res) => {
-    const protocol = req.protocol; // 'http' или 'https'
-    const host = req.get('host');  //
-    const { tag } = req.params;
-  try {
-    const apiData = await getDataFromAPI('tag', tag); 
-    const tagData = await getDataFromAPI('all_tags'); 
-    res.render('project', { apiData, tagData,host, protocol  });
-  } catch (error) {
-    console.error('Ошибка при получении данных с API:', error);
-    res.status(500).render('error',{ errorCode: 500});
-  }
-});
-
-app.get('/projects/:project_name', async (req, res) => {
+app.get('/projects/:project_name/', async (req, res) => {
     const protocol = req.protocol; // 'http' или 'https'
     const host = req.get('host');  //
     const { project_name } = req.params;
+    const contactsApiData = await getDataFromAPI('contacts'); 
   try {
     const apiData = await getDataFromAPI('project_item', project_name); 
-    res.render(`project_item`, { apiData, host, protocol });
+    res.render(`project_item`, { apiData, host, protocol, contactsApiData });
   } catch (error) {
     console.error('Ошибка при получении данных с API:', error);
     res.status(500).render('error',{ errorCode: 500});
   }
 });
-
-app.get('/skills', async (req, res) => {
+// DONE
+app.get('/:skill_name/', async (req, res) => {
     const protocol = req.protocol; // 'http' или 'https'
     const host = req.get('host');  //
+    const { skill_name }= req.params;
+    const contactsApiData = await getDataFromAPI('contacts'); 
   try {
-    const apiData = await getDataFromAPI('skills'); 
-    res.render(`skills`, { apiData, host, protocol  });
-  } catch (error) {
-    console.error('Ошибка при получении данных с API:', error);
-    res.status(500).render('error',{ errorCode: 500});
-  }
-});
-
-app.get('/skills/:skills_item', async (req, res) => {
-    const protocol = req.protocol; // 'http' или 'https'
-    const host = req.get('host');  //
-    const { skills_item }= req.params;
-  try {
-    const apiData = await getDataFromAPI('skills_item', skills_item); 
-    res.render(`skill_item`, { apiData, host, protocol });
+    const apiData = await getDataFromAPI('skills_item', skill_name); 
+    res.render(`skill_item`, { apiData, host, protocol,contactsApiData });
   } catch (error) {
     console.error('Ошибка при получении данных с API:', error);
     res.status(500).render('error',{ errorCode: 500});

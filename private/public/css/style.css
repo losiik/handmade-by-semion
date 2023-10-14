@@ -93,8 +93,7 @@ section {
     padding: 2rem;
     position: absolute;
     right: -50%;
-    width: max-content;
-    max-width: 300%;
+    width: 250px;
     z-index: -10;
     background-color: #F6F6F6;
    filter: drop-shadow(0px 4px 21px rgba(0, 0, 0, 0.15));
@@ -105,8 +104,7 @@ section {
     padding: 2rem;
     position: absolute;
     right: -50%;
-    width: max-content;
-    max-width: 300%;
+    width: 250px;
     background-color: #F6F6F6;
    filter: drop-shadow(0px 4px 21px rgba(0, 0, 0, 0.15));
 }
@@ -118,7 +116,6 @@ section {
 .b_cardList__grid {
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    grid-template-rows: repeat(3,1fr);
 }
 .b_card_img,.b_card_img img {
     object-fit:cover;
@@ -210,15 +207,23 @@ display: grid;
 grid-gap: 20px;
 margin-bottom: 40px;
 }
-.b_projectDetail__evenPhotoGrid {
-grid-template-columns: repeat(1, 1.66fr 1.33fr);
+
+.b_photoGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
 }
-.b_projectDetail__oddPhotoGrid {
-grid-template-columns: repeat(1, 1.33fr 1.66fr);
+.b_photoGrid > *:nth-child(4n + 1),
+.b_photoGrid > *:nth-child(4n + 4) {
+  grid-column: auto / span 4;
 }
-.b_projectDetail__100widthPhotoGrid {
-width: 100%;
+.b_photoGrid > *:nth-child(4n + 2),
+.b_photoGrid > *:nth-child(4n + 3) {
+  grid-column: auto / span 3;
 }
+
+
+
 .photo img{
 width: 100%;
 object-fit: cover;
@@ -252,6 +257,7 @@ height: 400px;
     font-size: 40px;
     font-weight: 600;
     text-align: center;
+    margin-top: 4rem;
 }
 .b_about__skillsGrid {
     display: flex;
@@ -259,7 +265,7 @@ height: 400px;
 
 }
 .b_skillsGrid__item {
-    flex: 1 300px
+    flex: 1 200px
 }
 .b_skillsGrid__item {
     font-size: 25px;
@@ -474,4 +480,7 @@ height: 400px;
     .b_footer__email, .b_footer__phone {
         margin: 10px 0; /* Add space around contact information */
     }
+}
+.show_more {
+    cursor: pointer;
 }
