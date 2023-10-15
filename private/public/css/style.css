@@ -442,79 +442,16 @@ height: 400px;
 [data-hidden="false"] {
     display: flex!important;
 } 
-@media (max-width: 700px) {
-    body {
-        font-size: 14px; /* Adjust base font size for better readability on smaller screens */
-    }
 
-    .b_header__container {
-        flex-direction: column; /* Stack logo and menu vertically */
-        text-align: center; /* Center align text */
-    }
 
-    .b_logo_text {
-        margin-top: 10px; /* Add some space above the logo text */
-    }
-
-    .b_menu__container {
-        margin-top: 10px; /* Add space between logo and menu */
-    }
-
-    .b_menuLinks {
-        justify-content: center; /* Center align menu items */
-        margin: 10px 0; /* Add some space around menu items */
-    }
-
-    .b_menuLinks li {
-        margin: 0 10px; /* Add space between menu items */
-    }
-
-    .b_cardList__grid {
-        grid-template-columns: repeat(1, 1fr); /* Display one card per row on smartphones */
-        gap: 20px; /* Add some space between cards */
-    }
-
-    .b_cardItem {
-        margin: 0; /* Remove margin around cards */
-    }
-
-    .b_card__description {
-        padding: 1rem; /* Add padding to card descriptions */
-    }
-
-    .b_card__title {
-        font-size: 20px; /* Decrease font size for card titles */
-    }
-
-    .b_card__text {
-        font-size: 14px; /* Decrease font size for card text */
-    }
-
-    .b_card_callToAction {
-        justify-content: center; /* Center align "Заказать" button */
-    }
-
-    .b_btn {
-        max-width: none; /* Allow button to take full width */
-    }
-
-    .b_footer__container {
-        flex-direction: column; /* Stack footer content vertically */
-        align-items: center; /* Center align footer content */
-    }
-
-    .b_footer__contacts {
-        margin-top: 20px; /* Add space between email and phone */
-    }
-
-    .b_footer__email, .b_footer__phone {
-        margin: 10px 0; /* Add space around contact information */
-    }
-}
 .show_more {
     cursor: pointer;
 }
 @media screen and (max-width: 993px) {
+        .b_cardList__grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+        }
         .b_about__personDesc {
             flex-direction: column;
         }
@@ -547,4 +484,153 @@ height: 400px;
         section {
             padding: 2rem 0;
         }
+        .b_portfoliio__filter {
+            margin-right: 30px;
+        }
+        .b_projectDetail__mainText h1 {
+            font-size: 30px;
+            
+        }
+        .b_projectDetail__mainDesc {
+            padding: 0;
+            font-size: 14px;
+        }
+        .b_otherPhotoGrid__title {
+            font-size: 26px;
+        }
+      
+        .b_photoGrid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 8px;
+        }
+        .b_photoGrid > *:nth-child(4n + 1),
+        .b_photoGrid > *:nth-child(4n + 4) {
+            grid-column: auto;
+        }
+        .b_photoGrid > *:nth-child(4n + 2),
+        .b_photoGrid > *:nth-child(4n + 3) {
+            grid-column: auto ;
+        }
+        .photo {
+            height: 200px;
+        }
+        .b_modal_body {
+            padding: 1rem;
+            margin: 3rem auto;
+        }
+        .b_modal_closeX {
+            position: absolute;
+            width: 10px;
+            height: 15px;
+            top: 0;
+            right: 20px;
+            z-index: 100;
+        }
+        .b_modal_body::after, .b_modal_closeX {
+            content: '\00d7';
+            cursor: pointer;
+            position: absolute;
+            transform: scale(4);
+            top: 0;
+            right: 20px;
+        }
+        .modal .b_modal_title {
+            font-size: 34px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0;
+        }
+}
+@media screen and (max-width: 450px) {
+    .b_modal_contactFrom {
+        flex-direction: column;
+
+    }
+    .modal .b_modal_contactFrom>* {
+        width: 100%;
+        padding-right: 1rem;
+    }
+    .modal .b_contact_title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+    }
+    
+    
+}
+@media (max-width: 700px) {
+    body {
+        font-size: 14px; /* Adjust base font size for better readability on smaller screens */
+    }
+
+    .b_header__container {
+        flex-direction: column; /* Stack logo and menu vertically */
+        text-align: center; /* Center align text */
+    }
+
+    .b_logo_text {
+        margin-top: 10px; /* Add some space above the logo text */
+    }
+
+    .b_menu__container {
+        margin-top: 10px; /* Add space between logo and menu */
+    }
+
+    .b_menuLinks {
+        justify-content: center; /* Center align menu items */
+        margin: 10px 0; /* Add some space around menu items */
+    }
+
+    .b_menuLinks li {
+        margin: 0 10px; /* Add space between menu items */
+    }
+
+    .b_cardList__grid {
+        grid-template-columns: repeat(1, 1fr); /* Display one card per row on smartphones */
+        gap: 0; /* Add some space between cards */
+    }
+
+    
+    .b_cardItem:nth-child(3n-1) {
+        margin: 0 0 1rem 0;
+    }
+    .b_cardItem:nth-child(3n+1) {
+        margin: 0 0 1rem 0;
+    }
+    .b_cardItem:nth-child(3n) {
+        margin: 0 0 1rem 0;
+    }
+    .b_card__description {
+        padding: 1rem; /* Add padding to card descriptions */
+    }
+    .b_card__title {
+        font-size: 20px; /* Decrease font size for card titles */
+    }
+
+    .b_card__text {
+        font-size: 14px; /* Decrease font size for card text */
+    }
+
+    .b_card_callToAction {
+        justify-content: center; /* Center align "Заказать" button */
+    }
+
+    .b_btn {
+        max-width: none; /* Allow button to take full width */
+    }
+
+    .b_footer__container {
+        flex-direction: column; /* Stack footer content vertically */
+        align-items: center; /* Center align footer content */
+    }
+
+    .b_footer__contacts {
+        margin-top: 20px; /* Add space between email and phone */
+    }
+
+    .b_footer__email, .b_footer__phone {
+        margin: 10px 0; /* Add space around contact information */
+    }
 }
