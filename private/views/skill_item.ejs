@@ -13,6 +13,8 @@
     <meta property="og:site_name" content='<%= protocol + "//" + host %>'>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/img/og_image.ico" type="image/x-icon">
+
     <title>Handmade by Semion</title>
 </head>
 <body>
@@ -100,6 +102,13 @@
                                 </div>
                                 <form action="#" id="form_contact_us">
                                     <div class="form_control">
+                                        <select name="skill_selection" id="skill_selection">
+                                            <% additionalApiData.all_work_dir.forEach((dir) => { %>
+                                                <option value="<%= dir.name %>"><%= dir.name %></option>
+                                            <% }) %>
+                                        </select>
+                                    </div>
+                                    <div class="form_control">
                                        
                                         <input type="text" required name="user_name" id="user_name">
                                         <label for="user_name">Your name</label>
@@ -126,6 +135,7 @@
                                     <li>Email: <a href="mailto:<%= contactsApiData.contacts[0].email %>"><%= contactsApiData.contacts[0].email %></a></li>
                                     <li>Phone: <a href="tel:<%= contactsApiData.contacts[0].phone %>"><%= contactsApiData.contacts[0].phone %></a></li>
                                 </ul>
+                               
                             </div>
                         </div>
                         <div class="b_modal_closeX"></div>
@@ -134,10 +144,10 @@
             </div>
         </div>
     </footer>
-    <script
+        <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
   crossorigin="anonymous"></script>
-<script src="/js/app.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>

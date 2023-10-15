@@ -5,34 +5,34 @@ async function getDataFromAPI(apiMethod, itemName) {
     let apiUrl;
     switch (apiMethod) {
         case 'about':
-            apiUrl = 'http://localhost:8000/api/main_page/';
+            apiUrl = 'http://backend:8000/api/main_page/';
             break;
         case 'projects':
-            apiUrl = 'http://localhost:8000/api/get_all_projects/';
+            apiUrl = 'http://backend:8000/api/get_all_projects/';
             break;
         case 'project_item':
-            apiUrl = `http://localhost:8000/api/get_full_project_info/?slug=${itemName}`;
+            apiUrl = `http://backend:8000/api/get_full_project_info/?slug=${itemName}`;
             break;
         case 'skills':
-            apiUrl = 'http://localhost:8000/api/all_skills/';
+            apiUrl = 'http://backend:8000/api/all_skills/';
             break;
         case 'skill_name':
-            apiUrl = `http://localhost:8000/api/skill_full_info/?skil=${itemName}`;
+            apiUrl = `http://backend:8000/api/skill_full_info/?skil=${itemName}`;
             break;
         case 'project_full_info':
-            apiUrl = `http://localhost:8000/api/get_projects_by_skill/?skill_slug=${itemName}`;
+            apiUrl = `http://backend:8000/api/get_projects_by_skill/?skill_slug=${itemName}`;
             break;
         case 'get_all_work_dir':
-            apiUrl = `http://localhost:8000/api/get_all_work_dir/`;
+            apiUrl = `http://backend:8000/api/get_all_work_dir/`;
             break;
         case 'get_filter':
-            apiUrl = 'http://localhost:8000/api/get_filter/';
+            apiUrl = 'http://backend:8000/api/get_filter/';
             break;
         case 'get_full_work_dir_info':
-            apiUrl = `http://localhost:8000/api/get_full_work_dir_info/?slug=${itemName}`;
+            apiUrl = `http://backend:8000/api/get_full_work_dir_info/?slug=${itemName}`;
             break;
         case 'contacts':
-            apiUrl = 'http://localhost:8000/api/contacts_page/';
+            apiUrl = 'http://backend:8000/api/contacts_page/';
             break;
         default:
             throw new Error('Неизвестный метод API');

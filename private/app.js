@@ -42,20 +42,22 @@ app.get('/projects/', cors(), async (req, res) => {
         }
        
         let apiData = [];
+        let isHidden = false;
         apiData.selected_skill = firstapiData.selected_skill
         let cardsToShow;
         let showMoreValue = parseInt(params.show_more);
         if (firstapiData.projects.length > showMoreValue * 6) {
+          isHidden = false;
           cardsToShow = showMoreValue * 6;
         } else {
-            cardsToShow = firstapiData.projects.length;
+          isHidden = true
+          cardsToShow = firstapiData.projects.length;
         };
         for (let index = 0; index < cardsToShow; index++) {
           apiData.push(firstapiData.projects[index]);
         }
-        console.log(apiData)
         const tagData = await getDataFromAPI('get_filter'); 
-        res.render('project', { apiData, tagData, host, protocol,contactsApiData,additionalApiData });
+        res.render('project', { apiData, tagData, host, protocol,contactsApiData, additionalApiData,isHidden });
       } catch (error) {
         console.error('Ошибка при получении данных с API:', error);
         res.status(500).render('error',{ errorCode: 500});
@@ -107,6 +109,6 @@ app.use(cors({
   origin: '*'
 }))
 
-app.listen(80, () => {
+app.listen(3000, () => {
   console.log('Сервер запущен на порту 80');
 });

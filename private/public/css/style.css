@@ -410,8 +410,39 @@ height: 400px;
     padding: 10px;
     border: none;
 }
-
-@media (max-width: 600px) {
+.b-btn_show_more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.b-btn_show_more .b_btn:hover {
+    background-color: #E02800;
+    padding: 0.5rem 1.2rem;
+    color: #FAFAFA;
+    text-align: center;
+    font-size: 18px;
+    border:  1px solid #E02800;
+    max-width: 200px;
+    transition: all .3s;
+}
+.b-btn_show_more .b_btn {
+    background-color: #ffffff;
+    padding: 0.5rem 1.2rem;
+    color: #000000;
+    text-align: center;
+    font-size: 18px;
+    border:  1px solid #E02800;
+    max-width: 200px;
+    box-sizing: border-box;
+    transition: all .3s;
+}
+[data-hidden="true"] {
+    display: none!important;
+} 
+[data-hidden="false"] {
+    display: flex!important;
+} 
+@media (max-width: 700px) {
     body {
         font-size: 14px; /* Adjust base font size for better readability on smaller screens */
     }
@@ -482,4 +513,38 @@ height: 400px;
 }
 .show_more {
     cursor: pointer;
+}
+@media screen and (max-width: 993px) {
+        .b_about__personDesc {
+            flex-direction: column;
+        }
+        .b_about__title {
+            margin-top: 1rem;
+            font-size: 26px;
+        }
+        .b_personDesc__title {
+            font-size: 30px;
+        }
+        .b_skillsGrid__item {
+            font-size: 16px;
+            font-weight: 400;
+            margin: .3rem;
+        }
+        .b_about__skillsGrid {
+            padding: 20px;
+            background-color: #ffffff;
+            margin: .5rem 0;
+        }
+        .b_logo_text {
+            font-size: 28px;
+        }
+        .b_personDesc__text {
+            font-size: 14px;
+        }
+        .b_portfolio__text {
+            font-size: 25px;
+        }
+        section {
+            padding: 2rem 0;
+        }
 }
