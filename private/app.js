@@ -107,6 +107,6 @@ app.use(cors({
   origin: '*'
 }))
 
-app.listen(80, () => {
-  console.log('Сервер запущен на порту 80');
+app.listen(3000, () => {
+  console.log('Сервер запущен на порту 3000');
 });
