@@ -16,7 +16,6 @@ function scrollToSPosiiton() {
     }
     return false;
 }
-
 document.addEventListener("DOMContentLoaded", () => {
     scrollToSPosiiton();
     document.body.addEventListener("click", function(e) {
@@ -48,10 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
         var userName = $("#user_name").val();
         var userPhone = $("#user_contact").val();
         var userMessage = $("#user_message").val();
+        var userSelectedSkill = $("#skill_selection").find(":selected").text();
+        const currentPage = location.pathname;
         $.ajax({
             method: 'POST',
             url: location.protocol + '//' + location.host + '/api/send_email/',
-            data: {'message': `user left data: \nName: ${userName} \nContact: ${userPhone}\nMessage: ${userMessage}`},
+            data: {'message': `user left data: \nName: ${userName} \nContact: ${userPhone}\nMessage: ${userMessage}\nSelected service: ${userSelectedSkill}\nPage from which the request came (Referer): ${currentPage}`},
             success: function(data) {
                 console.log(data)
                 alert("Your message was successfully delivered, we\'ll contact you asap")

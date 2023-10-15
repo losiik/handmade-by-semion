@@ -323,7 +323,7 @@ height: 400px;
     font-weight: 600;
     margin-bottom: 2rem;
 }
-.modal .form_control input, textarea{
+.modal .form_control input, textarea, select{
     background-color: #FAFAFA;
     border: none;
     max-width: 400px;
@@ -405,14 +405,12 @@ height: 400px;
 .b_portfoliio__desc {
     margin: 2rem 0;
 }
+#skill_selection {
+    background: #FAFAFA;
+    padding: 10px;
+    border: none;
+}
 
-
-
-
-
-/* тест */
-
-/* Reset default margin and padding */
 @media (max-width: 600px) {
     body {
         font-size: 14px; /* Adjust base font size for better readability on smaller screens */

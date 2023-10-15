@@ -2,7 +2,7 @@ const express = require('express');
 const { getDataFromAPI } = require('./apiHandler');
 const ejs = require('ejs');
 const path = require('path');
-
+const cors = require('cors');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -31,8 +31,7 @@ app.get('/projects/', async (req, res) => {
   const protocol = req.protocol; // 'http' или 'https'
   const host = req.get('host');  //
     const params = req.query;
-    // http://localhost/projects/?show_more=1&tag=some-text2
-    // params = {"show_more": 1, "tag": "some-text2"}
+    const additionalApiData = await getDataFromAPI('get_all_work_dir'); 
     if (params.show_more !== undefined) {
       try {
         const contactsApiData = await getDataFromAPI('contacts');
@@ -56,7 +55,7 @@ app.get('/projects/', async (req, res) => {
         }
         console.log(apiData)
         const tagData = await getDataFromAPI('get_filter'); 
-        res.render('project', { apiData, tagData, host, protocol,contactsApiData });
+        res.render('project', { apiData, tagData, host, protocol,contactsApiData,additionalApiData });
       } catch (error) {
         console.error('Ошибка при получении данных с API:', error);
         res.status(500).render('error',{ errorCode: 500});
@@ -74,9 +73,11 @@ app.get('/projects/:project_name/', async (req, res) => {
     const host = req.get('host');  //
     const { project_name } = req.params;
     const contactsApiData = await getDataFromAPI('contacts'); 
+    const additionalApiData = await getDataFromAPI('get_all_work_dir'); 
+
   try {
     const apiData = await getDataFromAPI('project_item', project_name); 
-    res.render(`project_item`, { apiData, host, protocol, contactsApiData });
+    res.render(`project_item`, { apiData, host, protocol, contactsApiData,additionalApiData });
   } catch (error) {
     console.error('Ошибка при получении данных с API:', error);
     res.status(500).render('error',{ errorCode: 500});
@@ -87,10 +88,12 @@ app.get('/:skill_name/', async (req, res) => {
     const protocol = req.protocol; // 'http' или 'https'
     const host = req.get('host');  //
     const { skill_name }= req.params;
-    const contactsApiData = await getDataFromAPI('contacts'); 
+    const contactsApiData = await getDataFromAPI('contacts');
+    const additionalApiData = await getDataFromAPI('get_all_work_dir'); 
+ 
   try {
     const apiData = await getDataFromAPI('get_full_work_dir_info', skill_name); 
-    res.render(`skill_item`, { apiData, host, protocol,contactsApiData });
+    res.render(`skill_item`, { apiData, host, protocol,contactsApiData,additionalApiData });
   } catch (error) {
     console.error('Ошибка при получении данных с API:', error);
     res.status(500).render('error',{ errorCode: 500});
@@ -100,6 +103,9 @@ app.get('/:skill_name/', async (req, res) => {
 app.use((req, res, next) => {
   res.status(404).render('error', { errorCode: 404});
 });
+app.use(cors({
+  origin: '*'
+}))
 
 app.listen(80, () => {
   console.log('Сервер запущен на порту 80');
