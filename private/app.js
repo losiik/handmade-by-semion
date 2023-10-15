@@ -11,7 +11,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //DONE
-app.get('/', async (req, res) => {
+app.get('/', cors(), async (req, res) => {
   const protocol = req.protocol;
   const host = req.get('host'); 
   try {
@@ -27,7 +27,7 @@ app.get('/', async (req, res) => {
 });
 
 // DONE 
-app.get('/projects/', async (req, res) => {
+app.get('/projects/', cors(), async (req, res) => {
   const protocol = req.protocol; // 'http' или 'https'
   const host = req.get('host');  //
     const params = req.query;
@@ -68,7 +68,7 @@ app.get('/projects/', async (req, res) => {
  
 });
 
-app.get('/projects/:project_name/', async (req, res) => {
+app.get('/projects/:project_name/', cors(), async (req, res) => {
     const protocol = req.protocol; // 'http' или 'https'
     const host = req.get('host');  //
     const { project_name } = req.params;
@@ -84,7 +84,7 @@ app.get('/projects/:project_name/', async (req, res) => {
   }
 });
 // DONE
-app.get('/:skill_name/', async (req, res) => {
+app.get('/:skill_name/', cors(), async (req, res) => {
     const protocol = req.protocol; // 'http' или 'https'
     const host = req.get('host');  //
     const { skill_name }= req.params;
