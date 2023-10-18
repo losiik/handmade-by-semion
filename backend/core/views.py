@@ -27,10 +27,15 @@ class PageAboutView(APIView):
         certificates_data = CertificatesImage.objects.all()
 
         for certificate_data in certificates_data:
-            certificates.append(certificate_data.certificates.path)
+            certificates.append(certificate_data.certificates.path.replace('/app', ''))
 
         return Response(
-            {"about": [{"about": main_page.about, "photo": main_page.photo.file.name}], "certificates": certificates}
+            {"about": [
+                {
+                    "about": main_page.about,
+                    "photo": main_page.photo.file.name.replace('/app', '')
+                }
+            ], "certificates": certificates}
         )
 
 
@@ -41,6 +46,17 @@ class PageContactsView(APIView):
     @csrf_exempt
     def get(self, request):
         contacts_page = PageContacts.objects.all()
+        if not contacts_page:
+            return Response(
+                {"contacts": [
+                    {
+                        "phone": "",
+                        "email": ""
+                    }
+
+                ]
+                }
+            )
         serializer = PageContactsSerializer(contacts_page, many=True)
         return Response({"contacts": serializer.data})
 
