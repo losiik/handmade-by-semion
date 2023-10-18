@@ -97,8 +97,9 @@ DATABASES = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",
-    'http://78.108.201.116',
-    "http://cfs24.com"
+    'http://143.244.189.224',
+    "http://handmadebysemion.com",
+    "https://handmadebysemion.com"
 ]
 
 # Password validation
@@ -138,11 +139,11 @@ USE_TZ = True
 CSRF_TRUSTED_ORIGINS = [
     'https://*.127.0.0.1',
     'http://*.127.0.0.1',
-    'http://*78.108.201.116',
-    'https://*78.108.201.116',
+    'http://*143.244.189.224',
+    'https://*143.244.189.224',
     'http://localhost',
-    'http://cfs24.com',
-    'https://cfs24.com'
+    'http://handmadebysemion.com',
+    'https://handmadebysemion.com'
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
