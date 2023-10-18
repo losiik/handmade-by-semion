@@ -1,4 +1,3 @@
-from django.db.models import QuerySet
 from django.forms import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
@@ -148,7 +147,7 @@ class GetAllProjectsView(APIView):
                 {
                     'project_name': project.project_name,
                     'preview_description': project.preview_description,
-                    'head_photo': project.head_photo.file.name,
+                    'head_photo': project.head_photo.file.name.replace('/app', ''),
                     'slug': project.slug
                 }
             )
@@ -170,7 +169,7 @@ class GetFullProjectInfoView(APIView):
 
         projects_imgs = ProjectsImage.objects.filter(project=project.id)
         for img in projects_imgs:
-            response['photos'].append(img.project_photo.file.name)
+            response['photos'].append(img.project_photo.file.name.replace('/app', ''))
 
         return Response(response)
 
@@ -192,7 +191,7 @@ class GetProjectsBySkill(APIView):
                 {
                     'project_name': project.project_name,
                     'preview_description': project.preview_description,
-                    'head_photo': project.head_photo.file.name,
+                    'head_photo': project.head_photo.file.name.replace('/app', ''),
                     'slug': project.slug
                 }
             )
