@@ -45,8 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'rest_framework',
-    'corsheaders'
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -57,7 +56,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'handmade_by_semion.urls'
@@ -84,21 +82,14 @@ WSGI_APPLICATION = 'handmade_by_semion.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'HOST': env['DB_POSTGRES_HOST'],
-#         'PORT': env['DB_POSTGRES_PORT'],
-#         'NAME': env['DB_POSTGRES_DBNAME'],
-#         'USER': env['DB_POSTGRES_USERNAME'],
-#         'PASSWORD': env['DB_POSTGRES_PASSWORD'],
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': env['DB_POSTGRES_HOST'],
+        'PORT': env['DB_POSTGRES_PORT'],
+        'NAME': env['DB_POSTGRES_DBNAME'],
+        'USER': env['DB_POSTGRES_USERNAME'],
+        'PASSWORD': env['DB_POSTGRES_PASSWORD'],
     }
 }
 
