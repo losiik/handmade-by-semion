@@ -18,7 +18,8 @@ class PageAboutAdmin(admin.ModelAdmin):
 
 @admin.register(CertificatesImage)
 class CertificatesImage(admin.ModelAdmin):
-    pass
+    def get_model_perms(self, request):
+        return {}
 
 
 @admin.register(PageContacts)
@@ -61,4 +62,5 @@ class ProjectsAdmin(admin.ModelAdmin):
 
 @admin.register(ProjectsImage)
 class ProjectsImage(admin.ModelAdmin):
-    pass
+    def get_model_perms(self, request):
+        return {}
