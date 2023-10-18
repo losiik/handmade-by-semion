@@ -14,12 +14,11 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/img/og_image.ico" type="image/x-icon">
-
     <title>Handmade by Semion</title>
 </head>
 <body>
     <header>
-        <div class="container">
+        <div class="container-lg">
             <div class="b_header__container">
                 <div class="b_logo__container">
                     <div class="b_logo__img">
@@ -73,7 +72,7 @@
                 </div>
                 <div class="b_about__certificatesGrid">
                     <% apiData.certificates.forEach((el) => { %>
-                        <div class="b_certificates_item"><img src="<%= el%>"></div>
+                        <div class="b_certificates_item"><img src="<%= el%>" alt="certificate"></div>
                     <%});%>
                    
                 </div>
@@ -87,6 +86,7 @@
                     all rights reserved 2023
                 </div>
                 <div class="b_footer__contacts">
+                    <% if (contactsApiData.contacts.length !== 0){ %>
                     <div class="b_footer__email">
                        
                         <a href="tel:<%= contactsApiData.contacts[0].phone %>"> <%= contactsApiData.contacts[0].phone %></a>
@@ -94,6 +94,7 @@
                     <div class="b_footer__phone">
                         <a href="mailto:<%= contactsApiData.contacts[0].email %>"><%= contactsApiData.contacts[0].email %></a>
                     </div>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -136,6 +137,7 @@
                                     <button class="b_btn" type="submit">Submit a request</button>
                                 </form>
                             </div>
+                            <% if (contactsApiData.contacts.length !== 0){ %>
                             <div class="b_modal_contactInfo">
                                 <div class="b_contact_title">
                                     My Contacts:
@@ -146,6 +148,7 @@
                                 </ul>
                                
                             </div>
+                            <% } %>
                         </div>
                         <div class="b_modal_closeX"></div>
                     </div>
@@ -157,6 +160,7 @@
   src="https://code.jquery.com/jquery-3.7.1.min.js"
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
   crossorigin="anonymous"></script>
+    <script src="/js/slider.min.js"></script>
     <script src="/js/app.js"></script>
 </body>
 </html>

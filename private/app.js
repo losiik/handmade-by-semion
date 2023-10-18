@@ -69,7 +69,7 @@ app.get('/projects/', cors(), async (req, res) => {
     }
  
 });
-
+// DONE
 app.get('/projects/:project_name/', cors(), async (req, res) => {
     const protocol = req.protocol; // 'http' или 'https'
     const host = req.get('host');  //
