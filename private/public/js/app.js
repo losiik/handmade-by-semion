@@ -19,6 +19,7 @@ function scrollToSPosiiton() {
 document.addEventListener("DOMContentLoaded", () => {
     scrollToSPosiiton();
     document.body.addEventListener("click", function(e) {
+        console.log(e.target)
         if(e.target && e.target.classList.value.includes('i-modal') && e.target.hasAttribute('href')) {
             var targetModal = document.querySelector(e.target.attributes.href.value)
             targetModal.classList.add('d-block')
@@ -26,9 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     document.querySelector('.b_modal_closeX').addEventListener('click', (e) => {
-      e.target.closest('.modal').classList.remove('d-block')
-      document.body.classList.contains('block') ? document.body.classList.remove('block') : null;
-    })
+        e.target.closest('.modal').classList.remove('d-block')
+        document.body.classList.contains('block') ? document.body.classList.remove('block') : null;
+        
+      })
     if(location.pathname == '/projects/') {
         document.querySelector('.show_more').addEventListener('click', (e) => {
             e.preventDefault()
@@ -43,7 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
            
         })
     }
-    document.querySelector('#form_contact_us')?.addEventListener('submit', () => {
+    document.querySelector('#form_contact_us')?.addEventListener('submit', (e) => {
+        e.preventDefault();
         var userName = $("#user_name").val();
         var userPhone = $("#user_contact").val();
         var userMessage = $("#user_message").val();
@@ -90,4 +93,5 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         ]
       });
+
 });
