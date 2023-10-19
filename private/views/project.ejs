@@ -48,7 +48,14 @@
                     All projects
                 </div>
                 <div class="b_portfoliio__filter">
-                    <%=apiData.selected_skill !== '' ? apiData.selected_skill : 'Filter by Tag' %>
+                    <%  let shortString;
+                    if (apiData.selected_skill.length > 25) {
+                        shortString = apiData.selected_skill.slice(0, 23)
+                        shortString += '...'
+                    } else {
+                        shortString = apiData.selected_skill
+                     } %>
+                    <%=apiData.selected_skill !== '' ? shortString : 'Filter by Tag' %>
                     <div class="b_filter__list">
                         <ul>
                             <li><a href="/projects/">All projects</a></li>
@@ -69,7 +76,14 @@
                                 <a href="/projects/<%=project.slug %>/"><%=project.project_name %></a>
                             </div>
                             <div class="b_card__text">
-                                <%=project.preview_description %>
+                                <% if (project.preview_description.length > 150) { 
+                                    let shortStr = project.preview_description.slice(0, 150)
+                                    shortStr += '...';
+                                    %>
+                                <%=shortStr%>
+                                <% } else { %>
+                                <%= project.preview_description%>
+                                <% }%>
                             </div>
                         </div>
                     </div>

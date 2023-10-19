@@ -69,7 +69,9 @@ $('.b_about__certificatesGrid').slick({
     slidesToScroll: 3,
     adaptiveHeight: true,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
+    prevArrow: '',
+    nextArrow: '',
     responsive: [
         {
           breakpoint: 993,
@@ -77,14 +79,14 @@ $('.b_about__certificatesGrid').slick({
             slidesToShow: 2,
             slidesToScroll: 2,
             infinite: true,
-            dots: true
           }
         },
         {
           breakpoint: 450,
           settings: {
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            autoplaySpeed: 5000
           }
         }
     ]
