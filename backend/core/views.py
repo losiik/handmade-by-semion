@@ -74,12 +74,15 @@ class EmailMessageView(APIView):
         email_creds = model_to_dict(queryset_email_cred[0])
 
         message = request.data['message']
+        work_direction = request.data['work_direction']
+
         send_mail = SendMail(host=email_creds['host'],
                              port=email_creds['port'],
                              email_address_from=email_creds['email_address_from'],
                              email_password=email_creds['email_password'],
                              email_address_to=email_creds['email_address_to'],
-                             message=message)
+                             message=message,
+                             work_direction=work_direction)
 
         return Response({"Send email success": send_mail.send_email()})
 
