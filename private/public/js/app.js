@@ -25,12 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
             targetModal.classList.add('d-block')
             document.body.classList.add('block')
         }
+        if(e.target && e.target.classList.value.includes('b_modal_closeX')) {
+            e.target.closest('.modal').classList.remove('d-block')
+            document.body.classList.contains('block') ? document.body.classList.remove('block') : null;
+        }
     });
-    document.querySelector('.b_modal_closeX').addEventListener('click', (e) => {
-        e.target.closest('.modal').classList.remove('d-block')
-        document.body.classList.contains('block') ? document.body.classList.remove('block') : null;
-        
-      })
+    
     if(location.pathname == '/projects/') {
         document.querySelector('.show_more').addEventListener('click', (e) => {
             e.preventDefault()
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const currentPage = location.pathname;
         $.ajax({
             method: 'POST',
-            url: location.protocol + '//' + location.host + '/api/send_email/',
+            url: location.protocol + '//' + location.host + ':8000/api/send_email/',
             data: {'message': `user left data: \nName: ${userName} \nContact: ${userPhone}\nMessage: ${userMessage}\nSelected service: ${userSelectedSkill}\nPage from which the request came (Referer): ${currentPage}`},
             success: function(data) {
                 console.log(data)
