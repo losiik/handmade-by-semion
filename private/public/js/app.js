@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
             success: function(data) {
                 console.log(data)
                 $('#contactMe').hasClass('d-block') ? $('#contactMe').removeClass('d-block') : null;
-                $('#contactMe')[0].reset();
+                $('#form_contact_us')[0].reset();
                 $('#successMessage').addClass('d-block');
             },
             error: function(error) {
