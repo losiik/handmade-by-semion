@@ -22,6 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(e.target)
         if(e.target && e.target.classList.value.includes('i-modal') && e.target.hasAttribute('href')) {
             var targetModal = document.querySelector(e.target.attributes.href.value)
+            let allOptions = [];
+            document.querySelectorAll('option').forEach((option) => {
+                allOptions.push(option.value);
+            })
+            if(allOptions.includes(document.querySelector('.b_portfolio__text').innerText)) {
+                $(`option:contains("${document.querySelector('.b_portfolio__text').innerText}")`).prop('selected', true)
+            }
+            $('form textarea').text(`I want to order ${$(this).data('inner-form')}`)
             targetModal.classList.add('d-block')
             document.body.classList.add('block')
         }
@@ -58,7 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
             data: {'message': `user left data: \nName: ${userName} \nContact: ${userPhone}\nMessage: ${userMessage}\nSelected service: ${userSelectedSkill}\nPage from which the request came (Referer): ${currentPage}`, 'work_direction': userSelectedSkill},
             success: function(data) {
                 console.log(data)
-               
+                $('#contactMe').hasClass('d-block') ? $('#contactMe').removeClass('d-block') : null;
+                $('#contactMe')[0].reset();
+                $('#successMessage').addClass('d-block');
             },
             error: function(error) {
                 console.log(error)
