@@ -28,8 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             if(allOptions.includes(document.querySelector('.b_portfolio__text').innerText)) {
                 $(`option:contains("${document.querySelector('.b_portfolio__text').innerText}")`).prop('selected', true)
+                $('form textarea').text(`I want to order ${e.target.attributes['data-inner-form'].value}`)
+             
             }
-            $('form textarea').text(`I want to order ${e.target.attributes['data-inner-form'].value}`)
             targetModal.classList.add('d-block')
             document.body.classList.add('block')
         }
