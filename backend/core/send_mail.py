@@ -1,10 +1,17 @@
 import smtplib
-from email.mime.text import MIMEText
+from email.message import EmailMessage
 
 
 class SendMail:
     def __init__(
-            self, host, port, email_address_from, email_password, email_address_to, message
+            self,
+            host,
+            port,
+            email_address_from,
+            email_password,
+            email_address_to,
+            message,
+            work_direction
     ):
 
         self.host = host
@@ -12,16 +19,21 @@ class SendMail:
         self.email_address_from = email_address_from
         self.email_password = email_password
         self.email_address_to = email_address_to
-        self.message = message
+        self.message_text = message
+        self.work_direction = work_direction
 
     def send_email(self):
         try:
-            message = MIMEText(self.message, 'plain', 'utf-8')
+            msg = EmailMessage()
+            msg['Subject'] = 'New order: ' + self.work_direction
+            msg['From'] = self.email_address_from
+            msg['To'] = self.email_address_to
+            msg.set_content(self.message_text)
 
             server = smtplib.SMTP(f'{self.host}:{self.port}')
             server.starttls()
             server.login(self.email_address_from, self.email_password)
-            server.sendmail(self.email_address_from, self.email_address_to, message.as_string())
+            server.send_message(msg)
             server.quit()
             return 'Message send successful'
         except:
