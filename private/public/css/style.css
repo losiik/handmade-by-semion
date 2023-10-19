@@ -576,6 +576,17 @@ margin-bottom: 40px;
             display: grid;
             grid-template-columns: repeat(2,1fr);
         }
+        .b_personDesc__title {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .photo img {
+            width: 100%;
+            object-fit: cover;
+            height: 300px;
+        }
+        
         .b_about__title {
             margin-top: 1rem;
             font-size: 26px;
@@ -634,7 +645,7 @@ margin-bottom: 40px;
             grid-column: auto ;
         }
         .photo {
-            height: 200px;
+            height: 300px;
         }
         .b_modal_body {
             padding: 1rem;
@@ -682,6 +693,14 @@ margin-bottom: 40px;
     
 }
 @media (max-width: 700px) {
+    .photo img {
+        width: 100%;
+        object-fit: cover;
+        height: 200px;
+    }
+    .photo {
+        height: 200px;
+    }
     body {
         font-size: 14px; /* Adjust base font size for better readability on smaller screens */
     }
