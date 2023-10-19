@@ -19,8 +19,8 @@ function scrollToSPosiiton() {
 document.addEventListener("DOMContentLoaded", () => {
     scrollToSPosiiton();
     document.body.addEventListener("click", function(e) {
-        console.log(e.target)
         if(e.target && e.target.classList.value.includes('i-modal') && e.target.hasAttribute('href')) {
+            console.log(e)
             var targetModal = document.querySelector(e.target.attributes.href.value)
             let allOptions = [];
             document.querySelectorAll('option').forEach((option) => {
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if(allOptions.includes(document.querySelector('.b_portfolio__text').innerText)) {
                 $(`option:contains("${document.querySelector('.b_portfolio__text').innerText}")`).prop('selected', true)
             }
-            $('form textarea').text(`I want to order ${$(this).data('inner-form')}`)
+            $('form textarea').text(`I want to order ${e.target.attributes['data-inner-form'].value}`)
             targetModal.classList.add('d-block')
             document.body.classList.add('block')
         }
