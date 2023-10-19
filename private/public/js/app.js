@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     document.querySelector('#form_contact_us')?.addEventListener('submit', (e) => {
         e.preventDefault();
+        $('#loader').toggleClass('d-block');
         var userName = $("#user_name").val();
         var userPhone = $("#user_contact").val();
         var userMessage = $("#user_message").val();
@@ -65,12 +66,13 @@ document.addEventListener("DOMContentLoaded", () => {
             url: location.protocol + '//' + location.host + ':8000/api/send_email/',
             data: {'message': `user left data: \nName: ${userName} \nContact: ${userPhone}\nMessage: ${userMessage}\nSelected service: ${userSelectedSkill}\nPage from which the request came (Referer): ${currentPage}`, 'work_direction': userSelectedSkill},
             success: function(data) {
-                console.log(data)
+                $('#loader').toggleClass('d-block');
                 $('#contactMe').hasClass('d-block') ? $('#contactMe').removeClass('d-block') : null;
                 $('#form_contact_us')[0].reset();
                 $('#successMessage').addClass('d-block');
             },
             error: function(error) {
+                $('#loader').toggleClass('d-block');
                 console.log(error)
                 alert("Something went wrong, try again later :(")
             }
