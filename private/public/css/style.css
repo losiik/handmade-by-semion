@@ -225,7 +225,7 @@ section {
     z-index: 100;
     padding: 2rem;
     position: absolute;
-    right: -50%;
+    right: 0;
     width: 250px;
     background-color: #F6F6F6;
    filter: drop-shadow(0px 4px 21px rgba(0, 0, 0, 0.15));
@@ -269,7 +269,8 @@ section {
   }
 .b_card_img:hover::after {
     content: '';
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(10x);
 }
 .b_cardItem {
     background-color: #ffffff;
@@ -384,8 +385,8 @@ margin-bottom: 40px;
     margin-top: 4rem;
 }
 .b_about__skillsGrid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 
 }
 .b_skillsGrid__item {
@@ -417,6 +418,8 @@ margin-bottom: 40px;
 }
 .modal {
     backdrop-filter: blur(20px);
+    background: #0000007d;
+    -webkit-backdrop-filter: blur(10px);
 }
 .b_modal_body {
     margin: 10rem auto;
@@ -576,11 +579,34 @@ margin-bottom: 40px;
             display: grid;
             grid-template-columns: repeat(2,1fr);
         }
+        .b_about__skillsGrid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        
+        }
+        .b_filter__list {
+            opacity: -1;
+            transition: all .5s;
+            padding: 2rem;
+            position: absolute;
+            right: 0;
+            width: 250px;
+            z-index: -10;
+            background-color: #F6F6F6;
+            filter: drop-shadow(0px 4px 21px rgba(0, 0, 0, 0.15));
+        }
         .b_personDesc__title {
             text-align: center;
             margin-top: 2rem;
         }
-        
+        .b_portfoliio__filter::before {
+            content: '';
+            position: absolute;
+            z-index: 20;
+            width: 100%;
+            height: 120%;
+            cursor: pointer;
+        }
         .photo img {
             width: 100%;
             object-fit: cover;
@@ -612,6 +638,7 @@ margin-bottom: 40px;
         }
         .b_portfolio__text {
             font-size: 25px;
+            margin-right: 1rem;
         }
         section {
             padding: 2rem 0;
@@ -630,7 +657,11 @@ margin-bottom: 40px;
         .b_otherPhotoGrid__title {
             font-size: 26px;
         }
-      
+        .b_portfoliio__filter {
+            margin-right: 20px;
+            font-size: 13px;
+            position: relative;
+        }
         .b_photoGrid {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
@@ -664,7 +695,7 @@ margin-bottom: 40px;
             cursor: pointer;
             position: absolute;
             transform: scale(4);
-            top: 0;
+            top: 10px;
             right: 20px;
         }
         .modal .b_modal_title {
@@ -704,7 +735,11 @@ margin-bottom: 40px;
     body {
         font-size: 14px; /* Adjust base font size for better readability on smaller screens */
     }
-
+    .b_about__skillsGrid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    
+    }
     .b_header__container {
         flex-direction: column; /* Stack logo and menu vertically */
         text-align: center; /* Center align text */
@@ -781,6 +816,7 @@ margin-bottom: 40px;
         width: 100%;
        
     }
+   
 }
 @media screen and (max-width: 450px) {
     .b_about__certificatesGrid>* {
