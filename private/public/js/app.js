@@ -55,13 +55,14 @@ document.addEventListener("DOMContentLoaded", () => {
         $.ajax({
             method: 'POST',
             url: location.protocol + '//' + location.host + ':8000/api/send_email/',
-            data: {'message': `user left data: \nName: ${userName} \nContact: ${userPhone}\nMessage: ${userMessage}\nSelected service: ${userSelectedSkill}\nPage from which the request came (Referer): ${currentPage}`},
+            data: {'message': `user left data: \nName: ${userName} \nContact: ${userPhone}\nMessage: ${userMessage}\nSelected service: ${userSelectedSkill}\nPage from which the request came (Referer): ${currentPage}`, 'work_direction': userSelectedSkill},
             success: function(data) {
                 console.log(data)
-                alert("Your message was successfully delivered, we\'ll contact you asap")
+               
             },
             error: function(error) {
                 console.log(error)
+                alert("Something went wrong, try again later :(")
             }
         })
     })
