@@ -64,7 +64,7 @@ class PageContacts(models.Model):
 class WorkDirection(models.Model):
     work_direction = models.CharField(max_length=255)
     description = models.TextField(default=None)
-    slug = models.SlugField(default=None, blank=True)
+    slug = models.SlugField(default=None, blank=True, max_length=255)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.work_direction)
@@ -78,7 +78,7 @@ class Skill(models.Model):
     work_direction = models.ForeignKey(WorkDirection, on_delete=models.CASCADE, default=None)
     skill = models.CharField(max_length=255)
     description = models.TextField(default=None)
-    slug = models.SlugField(default=None, blank=True)
+    slug = models.SlugField(default=None, blank=True, max_length=255)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.skill)
@@ -94,7 +94,7 @@ class Projects(models.Model):
     preview_description = models.TextField()
     full_description = models.TextField()
     head_photo = models.FileField()
-    slug = models.SlugField(default=None, blank=True)
+    slug = models.SlugField(default=None, blank=True, max_length=255)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.project_name)
