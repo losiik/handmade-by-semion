@@ -54,15 +54,17 @@
             <div class="b_cardList__grid">
                 <% apiData.skills.forEach(skill => { %>
                     <div class="b_cardItem">
-                        <div class="b_card__description">
-                            <div class="b_card__title">
-                               <%= skill.skill_name %>
-                            </div>
-                            <div class="b_card__text">
-                                <%= skill.skill_description %>
+                        <div class="b_card__description h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="b_card__title">
+                                    <%= skill.skill_name %>
+                                </div>
+                                <div class="b_card__text">
+                                    <%= skill.skill_description %>
+                                </div>
                             </div>
                             <div class="b_card_callToAction">
-                                <a class="b_btn i-modal b_btn_card" href="#contactMe" data-inner-form="<%= skill.skill_name%>">Заказать</a>
+                                <a class="b_btn i-modal b_btn_card" href="#contactMe" data-inner-form="<%= skill.skill_name%>">Order</a>
                             </div>
                         </div>
                     </div>
@@ -117,7 +119,7 @@
                                     <div class="form_control">
                                         
                                         <input type="text" required name="user_contact" id="user_contact">
-                                        <label for="user_contact">Your credits</label>
+                                        <label for="user_contact">Your contacts</label>
                                     </div>
                                     <div class="form_control">
                                        

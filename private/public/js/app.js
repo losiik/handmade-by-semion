@@ -62,32 +62,32 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
     })
+    $('.b_about__certificatesGrid').slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        prevArrow: '',
+        nextArrow: '',
+        variableWidth: true,
+        responsive: [
+            {
+              breakpoint: 993,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                infinite: true,
+              }
+            },
+            {
+              breakpoint: 450,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplaySpeed: 5000
+              }
+            }
+        ]
+      });
 });
-$('.b_about__certificatesGrid').slick({
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    adaptiveHeight: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    prevArrow: '',
-    nextArrow: '',
-    responsive: [
-        {
-          breakpoint: 993,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            infinite: true,
-          }
-        },
-        {
-          breakpoint: 450,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplaySpeed: 5000
-          }
-        }
-    ]
-  });
