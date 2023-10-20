@@ -40,7 +40,7 @@ class EmailMessageAdmin(admin.ModelAdmin):
 
 @admin.register(Skill)
 class SkillsAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['skill', 'work_direction']
 
 
 @admin.register(WorkDirection)
@@ -55,6 +55,7 @@ class ProjectsImageAdmin(admin.StackedInline):
 @admin.register(Projects)
 class ProjectsAdmin(admin.ModelAdmin):
     inlines = [ProjectsImageAdmin]
+    list_display = ['project_name', 'skill']
 
     class Meta:
         model = PageAbout
