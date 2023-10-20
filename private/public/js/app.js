@@ -19,8 +19,8 @@ function scrollToSPosiiton() {
 document.addEventListener("DOMContentLoaded", () => {
     scrollToSPosiiton();
     document.body.addEventListener("click", function(e) {
+        
         if(e.target && e.target.classList.value.includes('i-modal') && e.target.hasAttribute('href')) {
-            console.log(e)
             var targetModal = document.querySelector(e.target.attributes.href.value)
             let allOptions = [];
             document.querySelectorAll('option').forEach((option) => {
@@ -36,6 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if(e.target && e.target.classList.value.includes('b_modal_closeX')) {
             e.target.closest('.modal').classList.remove('d-block')
             document.body.classList.contains('block') ? document.body.classList.remove('block') : null;
+        }
+        if (e.target && e.target.classList.value.includes('photoLinkBlank')) {
+            console.log(e)
+            e.preventDefault();
+            let link = e.target.attributes.src.value;
+            $('#detailPhoto').find('#picture').attr('src', link);
+            $('#detailPhoto').toggleClass('d-block');
         }
     });
     
