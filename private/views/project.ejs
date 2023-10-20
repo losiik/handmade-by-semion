@@ -60,7 +60,7 @@
                         <ul>
                             <li><a href="/projects/">All projects</a></li>
                             <% tagData.all_skills.forEach((tag) => { %>
-                                <li><a href="/projects/?tag=<%= tag.slug %>"><%=tag.skill%></a></li>
+                                <li id="tagItem"><a href="/projects/?tag=<%= tag.slug %>"><%=tag.skill%></a></li>
                             <% }) %>
                         </ul>
                     </div>

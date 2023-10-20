@@ -216,19 +216,23 @@ section {
     position: absolute;
     right: -50%;
     width: 250px;
+    height: 300px;
     z-index: -10;
     background-color: #F6F6F6;
    filter: drop-shadow(0px 4px 21px rgba(0, 0, 0, 0.15));
+   -webkit-filter: drop-shadow(0px 4px 21px rgba(0, 0, 0, 0.15));
   }
 .b_portfoliio__filter:hover .b_filter__list {
     opacity: 1;
     z-index: 100;
-    padding: 2rem;
+    padding: 2rem 0.5rem;
     position: absolute;
     right: 0;
     width: 250px;
+    height: 300px;
     background-color: #F6F6F6;
    filter: drop-shadow(0px 4px 21px rgba(0, 0, 0, 0.15));
+   -webkit-filter: drop-shadow(0px 4px 21px rgba(0, 0, 0, 0.15));
 }
 
 .b_filter__list ul {
@@ -721,6 +725,15 @@ margin-bottom: 40px;
     }
     
     
+}
+#tagItem {
+    padding: 0.3rem 0.9rem;
+    border-radius: 0.5rem;
+}
+#tagItem:nth-of-type(odd){
+    background-color: #dadada;
+    padding: 0.3rem 0.9rem;
+    border-radius: 0.5rem;
 }
 @media (max-width: 700px) {
     .photo img {
