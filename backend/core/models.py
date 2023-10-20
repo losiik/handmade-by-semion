@@ -66,6 +66,11 @@ class WorkDirection(models.Model):
     description = models.TextField(default=None)
     slug = models.SlugField(default=None, blank=True, max_length=255)
 
+    # seo meta
+    # meta_keywords = models.TextField(blank=True, default=None) # скилы через запятую
+    # meta_title = models.CharField(max_length=50) # синоним к work_direction
+    # meta_description = models.CharField(max_length=150) # синоним к work_direction
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.work_direction)
         super().save(*args, **kwargs)
