@@ -175,6 +175,7 @@ class GetFullProjectInfoView(APIView):
         response['meta_keywords'] = project.meta_keywords
         response['meta_title'] = project.meta_title
         response['meta_description'] = project.meta_description
+        response['preview_description'] = project.preview_description
 
         projects_imgs = ProjectsImage.objects.filter(project=project.id)
         for img in projects_imgs:
