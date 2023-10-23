@@ -67,9 +67,9 @@ class WorkDirection(models.Model):
     slug = models.SlugField(default=None, blank=True, max_length=255)
 
     # seo meta
-    # meta_keywords = models.TextField(blank=True, default=None) # скилы через запятую
-    # meta_title = models.CharField(max_length=50) # синоним к work_direction
-    # meta_description = models.CharField(max_length=150) # синоним к work_direction
+    meta_keywords = models.TextField(blank=True, default=None)  # скилы через запятую
+    meta_title = models.CharField(blank=True, max_length=50, default=None)  # синоним к work_direction
+    meta_description = models.CharField(blank=True, max_length=150, default=None)  # синоним к work_direction
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.work_direction)
@@ -100,6 +100,11 @@ class Projects(models.Model):
     full_description = models.TextField()
     head_photo = models.FileField()
     slug = models.SlugField(default=None, blank=True, max_length=255)
+
+    # seo meta
+    meta_keywords = models.TextField(blank=True, default=None)  # скилы через запятую
+    meta_title = models.CharField(blank=True, max_length=50, default=None)  # синоним к work_direction
+    meta_description = models.CharField(blank=True, max_length=150, default=None)  # синоним к work_direction
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.project_name)

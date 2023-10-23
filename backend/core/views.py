@@ -125,6 +125,9 @@ class GetFullWorkDirInfoView(APIView):
         response['work_dir'] = work_dir.work_direction
         response['description'] = work_dir.description
         response['skills'] = []
+        response['meta_keywords'] = work_dir.meta_keywords
+        response['meta_title'] = work_dir.meta_title
+        response['meta_description'] = work_dir.meta_description
 
         skills = Skill.objects.filter(work_direction=work_dir.id)
 
@@ -169,6 +172,9 @@ class GetFullProjectInfoView(APIView):
         response['slug'] = project.slug
         response['full_description'] = project.full_description
         response['photos'] = []
+        response['meta_keywords'] = project.meta_keywords
+        response['meta_title'] = project.meta_title
+        response['meta_description'] = project.meta_description
 
         projects_imgs = ProjectsImage.objects.filter(project=project.id)
         for img in projects_imgs:
@@ -195,7 +201,10 @@ class GetProjectsBySkill(APIView):
                     'project_name': project.project_name,
                     'preview_description': project.preview_description,
                     'head_photo': project.head_photo.file.name.replace('/app', ''),
-                    'slug': project.slug
+                    'slug': project.slug,
+                    'meta_keywords': project.meta_keywords,
+                    'meta_title': project.meta_title,
+                    'meta_description': project.meta_description
                 }
             )
 
