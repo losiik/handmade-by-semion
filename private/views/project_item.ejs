@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="robots" content="index, follow">
         <meta name="description" content="<%= apiData.meta_description !== undefined ? apiData.meta_description : 'A Jack of all trades in Seattle, the best home repairs, all types of work, plumbing work' %>">
-        <meta property="og:title" content="<%= apiData.meta_title !== undefined ? apiData.meta_title : 'Project - ' + apiData.slug  %>">
+        <meta property="og:title" content="<%= apiData.meta_title !== undefined ? apiData.meta_title : 'Project - ' + apiData.project_name  %>">
         <meta property="og:description" content="<%= apiData.meta_description !== undefined ? apiData.meta_description : 'A Jack of all trades in Seattle, the best home repairs, all types of work, plumbing work' %>">
         <meta property="og:image" content="/img/og_image.png">
         <meta property="og:url" content="<%= protocol + "//" + host %>">
@@ -15,8 +16,27 @@
         <link rel="stylesheet" href="/css/style.css">
         <link rel="shortcut icon" href="/img/og_image.png" type="image/x-icon">
         <title><%= apiData.meta_title !== undefined ? apiData.meta_title : 'Project - ' + apiData.project_name %></title>
+           <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M0B11678HW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M0B11678HW');
+</script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WNFG7KT3');</script>
     </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WNFG7KT3"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <header>
         <div class="container">
             <div class="b_header__container">
@@ -55,11 +75,11 @@
             <% let i = 0 %>
                 <% while(i < apiData.photos.length) {%>
                     <%  if (i !== apiData.photos.length - 1) {%>
-                        <div class="photo"><a class="photoLinkBlank" href="<%= apiData.photos[i]%>" target="_blank"><img class="photoLinkBlank" src="<%= apiData.photos[i]%>" alt="project <%=apiData.slug %> photo"></a></div>
+                        <div class="photo"><img class="photoLinkBlank" src="<%= apiData.photos[i]%>" alt="project <%=apiData.slug %> photo"></div>
                     <%} else if (apiData.photos.length % 2 !== 0 && i == apiData.photos.length - 1) {%>
-                        <div class="photo" style="grid-column: auto / span 7;"><a class="photoLinkBlank" href="<%= apiData.photos[i]%>" target="_blank"><img class="photoLinkBlank" src="<%= apiData.photos[i]%>" alt="<%=apiData.slug %>"></a></div>
+                        <div class="photo" style="grid-column: auto / span 7;"><img class="photoLinkBlank" src="<%= apiData.photos[i]%>" alt="<%=apiData.slug %>"></div>
                     <%} else if (apiData.photos.length % 2 == 0 && i == apiData.photos.length - 1) {%>
-                        <div class="photo" ><a class="photoLinkBlank" href="<%= apiData.photos[i]%>" target="_blank"><img class="photoLinkBlank" src="<%= apiData.photos[i]%>" alt="last project photo"></a></div>
+                        <div class="photo" ><img class="photoLinkBlank" src="<%= apiData.photos[i]%>" alt="last project photo"></div>
                     <% }  %>
                 <% i++ %>
                 <% } %>
