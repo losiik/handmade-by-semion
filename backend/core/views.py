@@ -2,11 +2,11 @@ from django.forms import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import (PageAbout, PageContacts, Projects, SendEmailSettings, Skill, WorkDirection,
+from .models import (PageAbout, PageContacts, Projects, SendEmailSettings, Skill,
                      CertificatesImage, ProjectsImage)
 from .send_mail import SendMail
 from .serializers import PageAboutSerializer, PageContactsSerializer, SendEmailSettingsSerializer, \
-    EmailMessageSerializer, SkillSerializer, WorkDirection
+    EmailMessageSerializer, WorkDirection
 
 
 class PageAboutView(APIView):
