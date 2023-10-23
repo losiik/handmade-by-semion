@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll('option').forEach((option) => {
                 allOptions.push(option.value);
             })
-            if(document.querySelector('.b_portfolio__text') !== null && allOptions.includes(document.querySelector('.b_portfolio__text').innerText)) {
+            if(document.querySelector('.b_portfolio__text') !== null && allOptions.includes(document.querySelector('.b_portfolio__text').innerText) && e.target.attributes['data-inner-form'] !== undefined) {
                 $(`option:contains("${document.querySelector('.b_portfolio__text').innerText}")`).prop('selected', true)
                 $('form textarea').text(`I want to order ${e.target.attributes['data-inner-form'].value}`)
             }
