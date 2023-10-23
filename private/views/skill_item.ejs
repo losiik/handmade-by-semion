@@ -10,10 +10,10 @@
         <meta property="og:title" content="<%= apiData.meta_title !== '' ? apiData.meta_title : 'Handmade by Semion' %>">
         <meta property="og:description" content="<%= apiData.meta_description !== '' ? apiData.meta_description : 'Dive into Master Semion\'s exceptional plumbing services in Seattle, Washington. Experience unmatched expertise and craftsmanship for all your plumbing needs.' %>">
         <meta property="og:image" content="/img/og_image.png">
-        <meta name="keywords" content="<% apiData.skills.forEach(skill => {%>
+        <meta name="keywords" content="<% apiData.meta_keywords !== '' ? apiData.meta_keywords : apiData.skills.forEach(skill => {%>
             <%= skill.skill_name%> in Washington, 
             <%})%>">
-        <meta name="og:keywords" content="<% apiData.skills.forEach(skill => {%>
+        <meta name="og:keywords" content="<% apiData.meta_keywords !== '' ? apiData.meta_keywords : apiData.skills.forEach(skill => {%>
             <%= skill.skill_name%> in Washington, 
             <%})%>">
         <meta property="og:url" content="<%= protocol + "//" + host %>">
