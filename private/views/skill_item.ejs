@@ -6,12 +6,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="<%= apiData.meta_description !== undefined ? apiData.meta_description : 'A Jack of all trades in Seattle, the best home repairs, all types of work, plumbing work' %>">
-        <meta property="og:title" content="<%= apiData.meta_title !== undefined ? apiData.meta_title : 'Handmade by Semion' %>">
-        <meta property="og:description" content="<%= apiData.meta_description !== undefined ? apiData.meta_description : 'A Jack of all trades in Seattle, the best home repairs, all types of work, plumbing work' %>">
+        <meta name="description" content="<%= apiData.meta_description !== '' ? apiData.meta_description : 'Dive into Master Semion\'s exceptional plumbing services in Seattle, Washington. Experience unmatched expertise and craftsmanship for all your plumbing needs.' %>">
+        <meta property="og:title" content="<%= apiData.meta_title !== '' ? apiData.meta_title : 'Handmade by Semion' %>">
+        <meta property="og:description" content="<%= apiData.meta_description !== '' ? apiData.meta_description : 'Dive into Master Semion\'s exceptional plumbing services in Seattle, Washington. Experience unmatched expertise and craftsmanship for all your plumbing needs.' %>">
         <meta property="og:image" content="/img/og_image.png">
+        <meta name="keywords" content="<% apiData.skills.forEach(skill => {%>
+            <%= skill.skill_name%>
+            <%})%>">
+        <meta name="og:keywords" content="<% apiData.skills.forEach(skill => {%>
+            <%= skill.skill_name + %> in Washington, 
+            <%})%>">
         <meta property="og:url" content="<%= protocol + "//" + host %>">
-        <meta property="og:site_name" content='<%= protocol + "//" + host %>'>
+        <meta property="og:site_name" content='<%= host %>'>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/style.css">
         <link rel="shortcut icon" href="/img/og_image.png" type="image/x-icon">

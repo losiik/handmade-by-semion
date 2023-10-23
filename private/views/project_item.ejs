@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="<%= apiData.meta_description !== undefined ? apiData.meta_description : 'A Jack of all trades in Seattle, the best home repairs, all types of work, plumbing work' %>">
-        <meta property="og:title" content="<%= apiData.meta_title !== undefined ? apiData.meta_title : 'Project - ' + apiData.project_name  %>">
-        <meta property="og:description" content="<%= apiData.meta_description !== undefined ? apiData.meta_description : 'A Jack of all trades in Seattle, the best home repairs, all types of work, plumbing work' %>">
+        <meta name="description" content="<%= apiData.meta_description !== '' ? apiData.meta_description : apiData.preview_description %>">
+        <meta property="og:title" content="<%= apiData.meta_title !== '' ? apiData.meta_title : 'Project - ' + apiData.project_name  %>">
+        <meta name="og:description" content="<%= apiData.meta_description !== '' ? apiData.meta_description : apiData.preview_description %>">
         <meta property="og:image" content="/img/og_image.png">
         <meta property="og:url" content="<%= protocol + "//" + host %>">
-        <meta property="og:site_name" content='<%= protocol + "//" + host %>'>
+        <meta property="og:site_name" content='<%= host %>'>
+        <meta name="keywords" content="<%=apiData.meta_keywords !== '' ? apiData.meta_keywords : apiData.project_name + ', Seattle craftsman, Artisan woodworking, Plumbing services, Custom furniture, Home improvement, Handcrafted projects, Seattle, Washington, House renovation, Bespoke craftsmanship, Home repair services'%>">
+        <meta name="og:keywords" content="<%=apiData.meta_keywords !== '' ? apiData.meta_keywords : apiData.project_name + 'Seattle craftsman, Artisan woodworking, Plumbing services, Custom furniture, Home improvement, Handcrafted projects, Seattle, Washington, House renovation, Bespoke craftsmanship, Home repair services'%>">
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/style.css">
         <link rel="shortcut icon" href="/img/og_image.png" type="image/x-icon">
-        <title><%= apiData.meta_title !== undefined ? apiData.meta_title : 'Project - ' + apiData.project_name %></title>
+        <title><%= apiData.meta_title !== '' ? apiData.meta_title : 'Project - ' + apiData.project_name %></title>
            <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0B11678HW"></script>
 <script>
