@@ -10,6 +10,8 @@ services:
       - static_value:/app/static/
       - media_volume:/app/files/
     restart: always
+    networks:
+      - app-network
 
   nginx:
     image: nginx:1.19.3
@@ -24,6 +26,8 @@ services:
     depends_on:
       - backend
       - frontend
+    networks:
+      - app-network
 
   frontend:
     build: private/
@@ -37,6 +41,8 @@ services:
     restart: always
     links:
       - backend
+    networks:
+      - app-network
 
   certbot:
     image: certbot/certbot
@@ -56,3 +62,11 @@ volumes:
   certbot-var:
   web-root:
     driver: local
+    driver_opts:
+      type: none
+      device: /home/test/handmade-by-semion/views/
+      o: bind
+
+networks:
+  app-network:
+    driver: bridge
