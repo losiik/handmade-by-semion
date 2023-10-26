@@ -60,8 +60,8 @@ volumes:
   media_volume:
   certbot-etc:
   certbot-var:
-#  web-root:
-#    driver: local
+  web-root:
+    driver: local
 #    driver_opts:
 #      type: none
 #      device: ~/handmade-by-semion/views/
