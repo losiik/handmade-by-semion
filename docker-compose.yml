@@ -41,8 +41,6 @@ services:
     volumes:
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
-    depends_on:
-      - webserver
     command: certonly --email semion@handmadebysemion.com --agree-tos --no-eff-email --staging -d handmadebysemion.com
 
 volumes:
