@@ -64,7 +64,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/test/handmade-by-semion/views/
+      device: /home/root/handmade-by-semion/views/
       o: bind
 
 networks:
