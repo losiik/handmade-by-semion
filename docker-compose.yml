@@ -45,15 +45,15 @@ services:
       - app-network
 
   certbot:
-    image: certbot/certbot:v1.22.0
+    image: certbot/certbot
     container_name: certbot
     volumes:
+      - web-root:/usr/src/app
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
-      - web-root:/usr/src/app
     depends_on:
       - nginx
-    command: certonly --webroot --webroot-path=/usr/src/app --email semion@handmadebysemion.com --agree-tos --no-eff-email --staging --force-renewal --cert-name handmadebysemion.com
+    command: certonly --webroot --webroot-path=/usr/src/app --email semion@handmadebysemion.com --agree-tos --no-eff-email --staging -d handmadebysemion.com
 
 volumes:
   static_value:
@@ -62,6 +62,10 @@ volumes:
   certbot-var:
   web-root:
     driver: local
+    driver_opts:
+      type: none
+      device: ~/handmade-by-semion/views/
+      o: bind
 
 networks:
   app-network:
