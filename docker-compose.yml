@@ -1,17 +1,15 @@
 version: "3"
 
 services:
-  backend:
-    build: backend/
-    container_name: backend
-    ports:
-      - "8000:8000"
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
     volumes:
-      - static_value:/app/static/
-      - media_volume:/app/files/
-    restart: always
-    networks:
-      - app-network
+      - ./certbot-etc:/etc/letsencrypt
+      - ./certbot-var:/var/lib/letsencrypt
+      - web-root:/var/www/certbot
+    depends_on:
+      - nginx
 
   nginx:
     image: nginx:1.19.3
@@ -26,6 +24,16 @@ services:
     depends_on:
       - backend
       - frontend
+
+  backend:
+    build: backend/
+    container_name: backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - static_value:/app/static/
+      - media_volume:/app/files/
+    restart: always
     networks:
       - app-network
 
@@ -44,17 +52,6 @@ services:
     networks:
       - app-network
 
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - web-root:/var/www/certbot
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-    depends_on:
-      - nginx
-    command: certonly --webroot --webroot-path=/var/www/certbot --email semion@handmadebysemion.com --agree-tos --no-eff-email --staging -d handmadebysemion.com
-
 volumes:
   static_value:
   media_volume:
@@ -62,10 +59,6 @@ volumes:
   certbot-var:
   web-root:
     driver: local
-    driver_opts:
-      type: none
-      device: ~/handmade-by-semion/views/
-      o: bind
 
 networks:
   app-network:
