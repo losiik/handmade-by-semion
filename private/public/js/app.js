@@ -16,8 +16,27 @@ function scrollToSPosiiton() {
     }
     return false;
 }
+
+function getCookie(name) {
+    if (!document.cookie) {
+      return null;
+    }
+  
+    const xsrfCookies = document.cookie.split(';')
+      .map(c => c.trim())
+      .filter(c => c.startsWith(name + '='));
+  
+    if (xsrfCookies.length === 0) {
+      return null;
+    }
+    return decodeURIComponent(xsrfCookies[0].split('=')[1]);
+  }
+
 document.addEventListener("DOMContentLoaded", () => {
     scrollToSPosiiton();
+    const csrfToken = getCookie('csrftoken');
+   
+
     document.body.addEventListener("click", function(e) {
         
         if(e.target && e.target.classList.value.includes('i-modal') && e.target.hasAttribute('href')) {
@@ -68,7 +87,9 @@ document.addEventListener("DOMContentLoaded", () => {
         var userMessage = $("#user_message").val();
         var userSelectedSkill = $("#skill_selection").find(":selected").text();
         const currentPage = location.pathname;
+        
         $.ajax({
+            headers: {"X-CSRFToken": csrfToken},
             method: 'POST',
             url: 'http://' + location.host + ':8000/api/send_email/',
             data: {'message': `user left data: \nName: ${userName} \nContact: ${userPhone}\nMessage: ${userMessage}\nSelected service: ${userSelectedSkill}\nPage from which the request came (Referer): ${currentPage}`, 'work_direction': userSelectedSkill},
