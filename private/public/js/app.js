@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         $.ajax({
             headers: {"X-CSRFToken": csrfToken},
             method: 'POST',
-            url: 'http://' + location.host + ':8000/api/send_email/',
+            url: location.protocol + '//' + location.host + '/api/send_email/',
             data: {'message': `user left data: \nName: ${userName} \nContact: ${userPhone}\nMessage: ${userMessage}\nSelected service: ${userSelectedSkill}\nPage from which the request came (Referer): ${currentPage}`, 'work_direction': userSelectedSkill},
             success: function(data) {
                 $('#loader').toggleClass('d-block');
