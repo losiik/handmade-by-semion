@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             if(document.querySelector('.b_portfolio__text') !== null && allOptions.includes(document.querySelector('.b_portfolio__text').innerText) && e.target.attributes['data-inner-form'] !== undefined) {
                 $(`option:contains("${document.querySelector('.b_portfolio__text').innerText}")`).prop('selected', true)
-                $('form textarea').text(`I want to order ${e.target.attributes['data-inner-form'].value}`)
+                $('form textarea').text(`I would like to order the service ${e.target.attributes['data-inner-form'].value}`)
             }
             targetModal.classList.add('d-block')
             document.body.classList.add('block')
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const currentPage = location.pathname;
         $.ajax({
             method: 'POST',
-            url: location.protocol + '//' + location.host + ':8000/api/send_email/',
+            url: 'http://' + location.host + ':8000/api/send_email/',
             data: {'message': `user left data: \nName: ${userName} \nContact: ${userPhone}\nMessage: ${userMessage}\nSelected service: ${userSelectedSkill}\nPage from which the request came (Referer): ${currentPage}`, 'work_direction': userSelectedSkill},
             success: function(data) {
                 $('#loader').toggleClass('d-block');
